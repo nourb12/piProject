@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients Carousel</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: transparent; /* Transparent Background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25vh;
+            overflow: hidden;
+        }
+
+        /* Full-Width Carousel */
+        .carousel-container {
+            width: 100vw; /* Full screen width */
+            overflow: hidden;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* Track - Holds the logos */
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            gap: 150px; /* Reduced space between logos */
+            white-space: nowrap;
+            width: max-content;
+            animation: scroll 15s linear infinite;
+        }
+
+        /* Individual Slide */
+        .carousel-slide {
+            min-width: 0 px; /* Smaller Logos */
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(50%);
+            transition: transform 1s ease, filter 1s ease;
+        }
+
+        /* Slower Hover Effect */
+        .carousel-slide img:hover {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        /* Infinite Scrolling Animation */
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); } /* Moves half of the duplicated list */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Full-Width Carousel Section -->
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-1.png" alt="Client 1"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-2.png" alt="Client 2"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-3.png" alt="Client 3"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-4.png" alt="Client 4"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-5.png" alt="Client 5"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-6.png" alt="Client 6"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-7.png" alt="Client 7"></div>
+            <div class="carousel-slide"><img src="assets/frontassets/img/clients/client-8.png" alt="Client 8"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const track = document.querySelector(".carousel-track");
+            
+            // Duplicate the logos to create a smooth infinite scroll effect
+            track.innerHTML += track.innerHTML;
+        });
+    </script>
+
+</body>
+</html>
