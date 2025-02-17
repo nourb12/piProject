@@ -17,6 +17,8 @@ import { SidebackComponent } from './components/sideback/sideback.component';
 import { HeaderbackComponent } from './components/headerback/headerback.component';
 import { LoginfrontComponent } from './loginfront/loginfront.component';
 import { ProfilebackComponent } from './profileback/profileback.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { IntershipoffersComponent } from './intershipoffers/intershipoffers.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ProfilebackComponent } from './profileback/profileback.component';
     SidebackComponent,
     HeaderbackComponent,
     LoginfrontComponent,
-    ProfilebackComponent
+    ProfilebackComponent,
+    LayoutComponent,
+    IntershipoffersComponent,
   ],
   imports: [
     BrowserModule,
