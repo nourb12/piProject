@@ -1,0 +1,44 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Complaint List</h4>
+      </div>
+    </div>
+
+    <!-- Button to navigate to Complaint Add page -->
+    <div class="actions-container">
+      <button class="create-btn" routerLink="/complaint-add">Create New Complaint</button>
+    </div>
+
+    <!-- Complaint Table -->
+    <table class="complaint-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Subject</th>
+          <th>Description</th>
+          <th>Submission Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let complaint of complaints">
+          <td>{{ complaint.id_complaint }}</td>
+          <td>{{ complaint.subject }}</td>
+          <td>{{ complaint.description }}</td>
+          <td>{{ complaint.submissionDate | date }}</td>
+          <td>{{ complaint.status }}</td>
+          <td class="action-buttons">
+            <button class="update-btn" (click)="onUpdate(complaint.id_complaint)">Update</button>
+            <button class="delete-btn" (click)="onDelete(complaint.id_complaint)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

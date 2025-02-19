@@ -1,0 +1,94 @@
+/* Overall container for the complaint list */
+.complaint-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styling */
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Table Styling */
+  .complaint-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .complaint-table th, .complaint-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .complaint-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .complaint-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .complaint-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Action buttons container */
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .btn-update {
+    background-color: #28a745;
+    color: white;
+    border: none;
+  }
+  
+  .btn-update:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .complaint-table th, .complaint-table td {
+      padding: 10px;
+    }
+  
+    .btn {
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+  }
+  

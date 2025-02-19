@@ -1,0 +1,95 @@
+<!-- evaluation-add.component.html -->
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <div class="container">
+<div class="evaluation-form">
+    <h2>Add Evaluation</h2>
+  
+    <form (ngSubmit)="addEvaluation()" #evaluationForm="ngForm">
+      <div class="form-group">
+        <label for="noteGlobale">Note Globale:</label>
+        <input
+          type="number"
+          id="noteGlobale"
+          name="noteGlobale"
+          [(ngModel)]="evaluation.noteGlobale"
+          class="form-control"
+          required
+          min="1"
+          max="10"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="qualiteEncadrement">Qualité de l'Encadrement:</label>
+        <input
+          type="number"
+          id="qualiteEncadrement"
+          name="qualiteEncadrement"
+          [(ngModel)]="evaluation.qualiteEncadrement"
+          class="form-control"
+          required
+          min="1"
+          max="10"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="ambianceTravail">Ambiance de Travail:</label>
+        <input
+          type="number"
+          id="ambianceTravail"
+          name="ambianceTravail"
+          [(ngModel)]="evaluation.ambianceTravail"
+          class="form-control"
+          required
+          min="1"
+          max="10"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="chargeTravail">Charge de Travail:</label>
+        <input
+          type="text"
+          id="chargeTravail"
+          name="chargeTravail"
+          [(ngModel)]="evaluation.chargeTravail"
+          class="form-control"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="commentaire">Commentaire:</label>
+        <textarea
+          id="commentaire"
+          name="commentaire"
+          [(ngModel)]="evaluation.commentaire"
+          class="form-control"
+          rows="4"
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="detail">Détail:</label>
+        <textarea
+          id="detail"
+          name="detail"
+          [(ngModel)]="evaluation.detail"
+          class="form-control"
+          rows="4"
+        ></textarea>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!evaluationForm.form.valid">
+        Add Evaluation
+      </button>
+    </form>
+  </div>
+  

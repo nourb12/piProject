@@ -1,0 +1,43 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Add Complaint</h4>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <form (ngSubmit)="addComplaint()">
+        <div class="form-group">
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" [(ngModel)]="complaint.subject" name="subject" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" [(ngModel)]="complaint.description" name="description" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="submissionDate">Submission Date:</label>
+          <input type="date" id="submissionDate" [(ngModel)]="complaint.submissionDate" name="submissionDate" required />
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select id="status" [(ngModel)]="complaint.status" name="status" required>
+            <option value="open">Open</option>
+            <option value="in-progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Add Complaint</button>
+      </form>
+    </div>
+  </div>
+</div>

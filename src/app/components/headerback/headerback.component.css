@@ -1,0 +1,20 @@
+/* Ajustement de la taille du logo */
+.navbar-header .logo img.sitename {
+    max-width: 120px; /* Ajuste la taille maximale du logo */
+    height: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ajustement pour qu'il reste bien centré */
+.navbar-header .logo {
+    display: flex;
+    align-items: center;
+    height: 60px; /* Ajuste la hauteur de la barre de navigation si nécessaire */
+}
+
+/* Réduction supplémentaire pour mobile */
+@media (max-width: 768px) {
+    .navbar-header .logo img.sitename {
+        max-width: 100px;
+    }
+}

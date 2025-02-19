@@ -1,0 +1,45 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <div class="container">
+            <h2>Liste des Évaluations</h2>
+            
+            <!-- Button to navigate to Evaluation Add page -->
+            <div class="actions-container">
+              <button class="create-btn" routerLink="/evaluation-add">Créer une nouvelle évaluation</button>
+            </div>
+          
+            <!-- Evaluation Table -->
+            <table class="evaluation-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Note Globale</th>
+                  <th>Qualité Encadrement</th>
+                  <th>Ambiance Travail</th>
+                  <th>Charge Travail</th>
+                  <th>Commentaire</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let evaluation of evaluations">
+                  <td>{{ evaluation.id }}</td>
+                  <td>{{ evaluation.noteGlobale }}</td>
+                  <td>{{ evaluation.qualiteEncadrement }}</td>
+                  <td>{{ evaluation.ambianceTravail }}</td>
+                  <td>{{ evaluation.chargeTravail }}</td>
+                  <td>{{ evaluation.commentaire }}</td>
+                  <td class="action-buttons">
+                    <button class="update-btn" (click)="onUpdate(evaluation.id)">Mettre à jour</button>
+                    <button class="delete-btn" (click)="onDelete(evaluation.id)">Supprimer</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          

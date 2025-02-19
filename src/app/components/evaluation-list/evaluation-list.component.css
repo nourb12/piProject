@@ -1,0 +1,54 @@
+/* Ensure the table takes up full width */
+table.evaluation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  table.evaluation-table th,
+  table.evaluation-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  table.evaluation-table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style for buttons */
+  .action-buttons button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .update-btn {
+    background-color: #4CAF50;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .evaluation-table {
+      font-size: 14px;
+    }
+  
+    .evaluation-table th,
+    .evaluation-table td {
+      padding: 8px;
+    }
+  
+    /* Adjust buttons for smaller screens */
+    .action-buttons button {
+      padding: 5px 8px;
+      font-size: 12px;
+    }
+  }
+  
