@@ -8,6 +8,7 @@ import { LoginfrontComponent } from './loginfront/loginfront.component';
 import { ProfilebackComponent } from './profileback/profileback.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { IntershipoffersComponent } from './intershipoffers/intershipoffers.component';
+import { AppoinmentsComponent } from './components/appoinments/appoinments.component';
 
 const routes: Routes = [
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'front', pathMatch: 'full' }, // Redirige vers /front au lieu de répéter HomeComponent
   { path: 'front', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'appoinments', component: AppoinmentsComponent },
   { path: 'back', component: HomebackComponent },
   { path: 'backnav', component: HeaderbackComponent },
   { path: 'login', component: LoginfrontComponent },

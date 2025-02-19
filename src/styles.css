@@ -1,7 +1,2 @@
-html {
-    scroll-behavior: smooth;
-}
-main {
-    overflow: visible !important;
-  }
-    
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
