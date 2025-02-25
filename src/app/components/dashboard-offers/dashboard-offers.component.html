@@ -1,0 +1,57 @@
+<div class="card p-4 shadow">
+    <h3 class="text-center mb-4" style="color:#dc3545;">📊 Internship Offers Dashboard</h3>
+  
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Duration</th>
+            <th>Stage Type</th>
+            <th>Status</th>
+            <th>Remote</th>
+            <th>Paid</th>
+            <th>Start Date</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offer of internshipOffers; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ offer.title }}</td>
+            <td>{{ offer.companyName }}</td>
+            <td>{{ offer.location }}</td>
+            <td>{{ offer.duration }} months</td>
+            <td>{{ offer.stageType }}</td>
+            <td>{{ offer.offerStatus }}</td>
+            <td>
+              <i class="bi" [ngClass]="offer.remote ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"></i>
+            </td>
+            <td>
+              <i class="bi" [ngClass]="offer.paid ? 'bi-cash text-success' : 'bi-cash-coin text-danger'"></i>
+            </td>
+            <td>{{ offer.startDate }}</td>
+            <td>
+              <img *ngIf="offer.imageUrls.length > 0" [src]="offer.imageUrls[0]" alt="Offer Image" class="offer-img">
+              <span *ngIf="offer.imageUrls.length === 0">No Image</span>
+            </td>
+            <td>
+              <button class="btn btn-primary btn-sm me-2" (click)="updateOffer(offer.id)">
+                <i class="bi bi-pencil-square"></i> Update
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="deleteOffer(offer.id)">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+              
+             
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

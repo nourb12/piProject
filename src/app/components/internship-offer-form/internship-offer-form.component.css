@@ -1,0 +1,39 @@
+.card {
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+label {
+  font-weight: 500;
+}
+
+input, textarea, select {
+  border-radius: 8px;
+}
+
+
+.card {
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+label {
+  font-weight: 500;
+}
+
+input, textarea, select {
+  border-radius: 8px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}

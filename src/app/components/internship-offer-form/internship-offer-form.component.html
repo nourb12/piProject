@@ -1,0 +1,92 @@
+<div class="card p-4 shadow">
+  <h3 class="text-center mb-4" style="color:#dc3545; font-weight:bold;">Publish an Internship Offer</h3>
+
+  <form [formGroup]="internshipForm" (ngSubmit)="submitOffer()">
+    <div class="row">
+
+      <!-- Partie Gauche -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-briefcase-fill"></i> Title</label>
+          <input type="text" class="form-control" formControlName="title">
+          <small class="text-danger" *ngIf="internshipForm.get('title')?.touched && internshipForm.get('title')?.invalid">Title is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-building"></i> Company Name</label>
+          <input type="text" class="form-control" formControlName="companyName">
+          <small class="text-danger" *ngIf="internshipForm.get('companyName')?.touched && internshipForm.get('companyName')?.invalid">Company name is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-geo-alt"></i> Location</label>
+          <select class="form-select" formControlName="location">
+            <option value="">Select Governorate</option>
+            <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+          </select>
+          <small class="text-danger" *ngIf="internshipForm.get('location')?.touched && internshipForm.get('location')?.invalid">Location is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-clock"></i> Duration (months)</label>
+          <input type="number" class="form-control" formControlName="duration">
+          <small class="text-danger" *ngIf="internshipForm.get('duration')?.touched && internshipForm.get('duration')?.invalid">Duration is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-calendar-date"></i> Start Date</label>
+          <input type="date" class="form-control" formControlName="startDate">
+          <small class="text-danger" *ngIf="internshipForm.get('startDate')?.touched && internshipForm.get('startDate')?.invalid">Start date is required.</small>
+        </div>
+      </div>
+
+      <!-- Partie Droite -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-tags"></i> Stage Type</label>
+          <select class="form-select" formControlName="stageType">
+            <option value="">Select Type</option>
+            <option value="Summer">Summer</option>
+            <option value="PFE">PFE</option>
+          </select>
+          <small class="text-danger" *ngIf="internshipForm.get('stageType')?.touched && internshipForm.get('stageType')?.invalid">Stage type is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-info-circle"></i> Offer Status</label>
+          <select class="form-select" formControlName="offerStatus">
+            <option value="">Select Status</option>
+            <option value="OPEN">OPEN</option>
+            <option value="CLOSED">CLOSED</option>
+            <option value="ARCHIVED">ARCHIVED</option>
+          </select>
+          <small class="text-danger" *ngIf="internshipForm.get('offerStatus')?.touched && internshipForm.get('offerStatus')?.invalid">Offer status is required.</small>
+        </div>
+
+        <div class="form-check form-switch mb-3">
+          <input type="checkbox" class="form-check-input" formControlName="isRemote" id="remoteSwitch">
+          <label class="form-check-label" for="remoteSwitch"><i class="bi bi-wifi"></i> Remote</label>
+        </div>
+
+        <div class="form-check form-switch mb-3">
+          <input type="checkbox" class="form-check-input" formControlName="isPaid" id="paidSwitch">
+          <label class="form-check-label" for="paidSwitch"><i class="bi bi-currency-dollar"></i> Paid</label>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-card-text"></i> Description</label>
+          <textarea class="form-control" formControlName="jobDescription" rows="4"></textarea>
+          <small class="text-danger" *ngIf="internshipForm.get('jobDescription')?.touched && internshipForm.get('jobDescription')?.invalid">Description is required (max 500 characters).</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-images"></i> Upload Images</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
+          <small class="text-danger" *ngIf="fileError">Please select at least one image.</small>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-danger w-100 mt-3">Add Offer</button>
+  </form>
+</div>

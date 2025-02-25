@@ -1,0 +1,75 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4" style="color: #D32F2F; font-weight: bold;">Find an Internship Offers</h2>
+  <div class="row">
+    <div *ngFor="let offer of internshipOffers" class="col-md-4 mb-4">
+      <div class="card shadow-sm offer-card">
+        <img [src]="offer.imageUrls[0]" class="card-img-top offer-img" alt="Offer Image">
+        <div class="card-body">
+          <span class="badge offer-status" [ngClass]="{
+            'bg-success': offer.offerStatus === 'OPEN',
+            'bg-danger': offer.offerStatus === 'CLOSED',
+            'bg-warning': offer.offerStatus === 'ARCHIVED'
+          }">{{ offer.offerStatus }}</span>
+          <h5 class="card-title mt-2" style="color: red; font-weight: bold;">{{ offer.title }}</h5>
+          <p class="card-text text-muted">{{ offer.companyName }}</p>
+          <p><i class="bi bi-geo-alt"></i> {{ offer.location }}</p>
+          <p><strong style="color: grey;">Type:</strong> {{ offer.stageType }}</p>
+          <p>
+            <i class="bi" [ngClass]="offer.paid ? 'bi-cash text-success' : 'bi-cash-coin text-danger'"></i>
+            {{ offer.paid ? 'Paid' : 'Unpaid' }}
+          </p>
+          <button class="btn btn-danger waves-effect" style="background-color: #F28B82; border-color: #F28B82;" (click)="openDetails(offer)">More Info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for offer details -->
+  <div *ngIf="selectedOffer" class="modal fade show d-block offer-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ selectedOffer.title }}</h5>
+          <button type="button" class="btn btn-danger waves-effect btn-close" style="background-color: #ff4b4b; border-color: #C62828;" (click)="closeDetails()"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong style="color: grey;">Company:</strong> {{ selectedOffer.companyName }}</p>
+          <p>{{ selectedOffer.jobDescription }}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success waves-effect" style="background-color: #F28B82; border-color: #F28B82; font-weight: bold;">Postuler</button>
+          <button class="btn btn-danger waves-effect" style="background-color: #C62828; border-color: #C62828;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .offer-card {
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+
+  .offer-card:hover {
+    transform: scale(1.03);
+  }
+
+  .offer-img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .offer-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .offer-modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
