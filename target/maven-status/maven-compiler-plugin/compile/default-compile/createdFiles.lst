@@ -1,0 +1,5 @@
+com\esprit\stage\Entities\InternshipOffer.class
+com\esprit\stage\Entities\StageType.class
+com\esprit\stage\Entities\OfferStatus.class
+com\esprit\stage\Repository\InternshipOfferRepository.class
+com\esprit\stage\StageApplication.class
