@@ -1,7 +1,7 @@
 package com.esprit.stage.Entities;
 
 import com.esprit.stage.Entities.Project;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,11 +16,13 @@ public class Task {
 
     private String title;
     private String description;
-    private Integer position; // Order within a column
+    private Integer position;
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status= TaskStatus.PLANNED;
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
-    @JsonIgnore
+    @JsonBackReference
     private Project project;
 
 
@@ -63,4 +65,12 @@ public class Task {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
 }

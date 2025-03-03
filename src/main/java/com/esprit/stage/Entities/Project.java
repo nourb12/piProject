@@ -1,7 +1,10 @@
 package com.esprit.stage.Entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,14 +18,20 @@ public class Project {
 
     private String title;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private float progress = 0.0f; // Pourcentage d'avancement
+    private boolean deadlineAlert = false; // Alerte sur la date limite
+
 
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Task> tasks;
+
+
 
     public Long getId() {
         return id;
@@ -48,19 +57,19 @@ public class Project {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -78,5 +87,21 @@ public class Project {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public float getProgress() {
+        return progress;
+    }
+
+    public void setProgress(float progress) {
+        this.progress = progress;
+    }
+
+    public boolean isDeadlineAlert() {
+        return deadlineAlert;
+    }
+
+    public void setDeadlineAlert(boolean deadlineAlert) {
+        this.deadlineAlert = deadlineAlert;
     }
 }
