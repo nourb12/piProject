@@ -22,6 +22,8 @@ public class Project {
     private LocalDate endDate;
     private float progress = 0.0f; // Pourcentage d'avancement
     private boolean deadlineAlert = false; // Alerte sur la date limite
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean archived = false; // Par défaut, un projet n'est pas archivé
 
 
     @Enumerated(EnumType.STRING)
@@ -30,6 +32,22 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Task> tasks;
+
+    @ManyToMany (fetch = FetchType.EAGER) // ✅ Many-to-Many relationship with User
+    @JoinTable(
+            name = "project_users",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", nullable = true)
+    )
+    private List<User> users;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
 
 
@@ -103,5 +121,13 @@ public class Project {
 
     public void setDeadlineAlert(boolean deadlineAlert) {
         this.deadlineAlert = deadlineAlert;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 }
