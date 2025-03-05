@@ -1,54 +1,165 @@
-/* Ensure the table takes up full width */
-table.evaluation-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+/* General Styles */
+#page-wrapper {
+  background-color: #f8f9fc;
+  padding: 40px; /* Increased padding */
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+.container-fluid {
+  max-width: 1400px; /* Increased container width */
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 2.5rem; /* Larger title */
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.actions-container {
+  margin-bottom: 30px; /* Increased margin */
+}
+
+.create-btn, .stats-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px; /* Larger padding */
+  font-size: 1.2rem; /* Larger font size */
+  border: none;
+  border-radius: 8px; /* More rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-btn:hover, .stats-btn:hover {
+  background-color: #0056b3;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px; /* Increased margin */
+}
+
+.search-container input {
+  padding: 12px; /* Increased padding */
+  font-size: 1.1rem; /* Larger font size */
+  width: 250px; /* Increased input width */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.search-container button {
+  padding: 12px 25px; /* Larger button padding */
+  background-color: #28a745;
+  color: white;
+  font-size: 1.1rem; /* Larger font size */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #218838;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px; /* Increased margin */
+}
+
+.table-bordered {
+  border: 1px solid #ddd;
+}
+
+.table th, .table td {
+  text-align: center;
+  padding: 20px; /* Increased padding */
+  font-size: 1.1rem; /* Larger font size */
+  color: #555;
+}
+
+.table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.table td {
+  background-color: #fff;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating mat-icon {
+  color: #f39c12;
+  font-size: 28px; /* Larger star size */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.rating mat-icon:hover {
+  transform: scale(1.3); /* Bigger hover effect */
+}
+
+.btn {
+  padding: 10px 20px; /* Larger button padding */
+  font-size: 1.1rem; /* Larger font size */
+  border-radius: 8px; /* Rounded buttons */
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #page-wrapper {
+    margin-left: 0;
+    padding: 20px;
   }
-  
-  table.evaluation-table th,
-  table.evaluation-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  table.evaluation-table th {
-    background-color: #f2f2f2;
+
+  .search-container input, .search-container button {
+    margin-bottom: 15px; /* Increased space between input and button */
   }
-  
-  /* Style for buttons */
-  .action-buttons button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border: none;
-    color: white;
-    font-size: 14px;
+
+  .table th, .table td {
+    font-size: 1rem;
+    padding: 15px; /* Increased padding for table cells */
   }
-  
-  .update-btn {
-    background-color: #4CAF50;
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 1rem; /* Adjusted button font size */
   }
-  
-  .delete-btn {
-    background-color: #f44336;
-  }
-  
-  /* Responsiveness */
-  @media (max-width: 768px) {
-    .evaluation-table {
-      font-size: 14px;
-    }
-  
-    .evaluation-table th,
-    .evaluation-table td {
-      padding: 8px;
-    }
-  
-    /* Adjust buttons for smaller screens */
-    .action-buttons button {
-      padding: 5px 8px;
-      font-size: 12px;
-    }
-  }
-  
+}

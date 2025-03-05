@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Complaint Responses</h2>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Message</th>
+          <th>Response Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let response of complaintResponses">
+          <td>{{ response.id }}</td>
+          <td>{{ response.message }}</td>
+          <td>{{ response.responseDate }}</td>
+          <td>
+            <button (click)="viewResponse(response.id)" class="btn btn-info">View</button>
+            <button (click)="deleteResponse(response.id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

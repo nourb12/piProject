@@ -11,7 +11,7 @@ export class ComplaintAddComponent {
     subject: '',
     description: '',
     submissionDate: new Date(),
-    status: '',
+    status: 'in-progress',
   };
 
   constructor(private complaintService: ComplaintService) {}

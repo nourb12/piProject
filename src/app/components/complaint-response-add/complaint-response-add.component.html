@@ -1,0 +1,67 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h2>Add Response to Complaint</h2>
+
+        <!-- Form to add complaint response -->
+        <form (ngSubmit)="addResponse()" #responseForm="ngForm">
+          
+          <!-- Message Input -->
+          <div class="form-group">
+            <label for="message">Response Message:</label>
+            <textarea 
+              id="message" 
+              [(ngModel)]="message" 
+              name="message" 
+              class="form-control" 
+              rows="4" 
+              required
+              minlength="5"
+              maxlength="500"
+              #messageRef="ngModel">
+            </textarea>
+
+            <!-- Message d'erreur pour le message -->
+            <div class="text-danger" *ngIf="messageRef.invalid && (messageRef.dirty || messageRef.touched)">
+              <small *ngIf="messageRef.errors?.['required']">⚠ Message is required.</small>
+              <small *ngIf="messageRef.errors?.['minlength']">⚠ Must be at least 5 characters long.</small>
+              <small *ngIf="messageRef.errors?.['maxlength']">⚠ Cannot exceed 500 characters.</small>
+            </div>
+          </div>
+
+          <!-- Response Date Input -->
+          <div class="form-group">
+            <label for="responseDate">Response Date:</label>
+            <input 
+              id="responseDate" 
+              [(ngModel)]="responseDate" 
+              name="responseDate" 
+              type="date" 
+              class="form-control" 
+              required
+              #dateRef="ngModel" />
+
+            <!-- Message d'erreur pour la date -->
+            <div class="text-danger" *ngIf="dateRef.invalid && (dateRef.dirty || dateRef.touched)">
+              <small *ngIf="dateRef.errors?.['required']">⚠ Date is required.</small>
+            </div>
+          </div>
+
+          <!-- Submit Button (désactivé si formulaire invalide) -->
+          <button type="submit" class="btn btn-primary" [disabled]="responseForm.invalid">
+            Add Response
+          </button>
+        </form>
+
+        <!-- Button to go back to complaint list -->
+        <div class="mt-3">
+          <button class="btn btn-secondary" routerLink="/complaints">Back to Complaints</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

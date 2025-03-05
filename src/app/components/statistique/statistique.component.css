@@ -1,0 +1,56 @@
+#page-wrapper {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .bg-title {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .stat-title {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  select {
+    padding: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  canvas {
+    display: block;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  #chargeTravailChart, #plaintesChart, #commentairesChart, #detailsChart {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+  }
+  

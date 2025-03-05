@@ -1,0 +1,47 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-12">
+        <h2>📊 Statistics</h2>
+
+        <!-- Average Global Ratings -->
+        <p class="stat-title">Average Global Rating: <strong>{{ moyenneNote | number:'1.1-2' }}</strong></p>
+        <p class="stat-title">Average Quality of Supervision: <strong>{{ moyenneQualiteEncadrement | number:'1.1-2' }}</strong></p>
+        <p class="stat-title">Average Work Environment: <strong>{{ moyenneAmbianceTravail | number:'1.1-2' }}</strong></p>
+
+        <!-- Workload Distribution Chart -->
+        <h3>Workload Distribution</h3>
+        <select [(ngModel)]="selectedChargeTravailType" (change)="loadChargeTravailChart()">
+          <option value="bar">Bar Chart</option>
+          <option value="pie">Pie Chart</option>
+          <option value="doughnut">Doughnut Chart</option>
+          <option value="line">Line Chart</option>
+        </select>
+        <canvas id="chargeTravailChart" width="400" height="400"></canvas>
+
+        <!-- Total Complaints -->
+        <h3>Total Complaints</h3>
+        <p><strong>{{ totalComplaints }}</strong></p>
+
+        <!-- Complaints Distribution Chart -->
+        <h3>Comment Distribution</h3>
+        <select [(ngModel)]="selectedPlaintesType" (change)="loadRepartitionPlaintesChart()">
+          <option value="radar">Radar Chart</option>
+          <option value="bar">Bar Chart</option>
+          <option value="pie">Pie Chart</option>
+          <option value="line">Line Chart</option>
+        </select>
+        <canvas id="plaintesChart" width="400" height="400"></canvas>
+
+   
+
+        <!-- Details Distribution Chart -->
+        <h3>Detail Distribution</h3>
+        <canvas id="detailsChart" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
