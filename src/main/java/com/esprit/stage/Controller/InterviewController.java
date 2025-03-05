@@ -35,7 +35,7 @@ public class InterviewController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-    // ✅ POST (Create) a new interview
+    //  POST (Create) a new interview
     @PostMapping
     public ResponseEntity<Interview> addInterview(
             @RequestBody Interview interview,
@@ -46,7 +46,7 @@ public class InterviewController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdInterview);
     }
 
-    // ✅ PUT (Update) an interview
+    //PUT (Update) an interview
     @PutMapping("update/{id}")
     public ResponseEntity<Interview> updateInterview(@RequestBody Interview interview, @PathVariable long id) {
         try {
@@ -57,7 +57,7 @@ public class InterviewController {
         }
     }
 
-    // ✅ DELETE an interview
+    // DELETE an interview
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteInterview(@PathVariable long id) {
         try {
@@ -67,6 +67,26 @@ public class InterviewController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+  @GetMapping("/by-user/{userId}")
+  public List<Interview> getInterviewsByUser(@PathVariable Long userId) {
+    return interviewService.getInterviewsByUser(userId);
+  }
+  @GetMapping("/by-user/{userId}/completed")
+  public List<Interview> getCompletedInterviewsByUser(@PathVariable Long userId) {
+    return interviewService.getCompletedInterviewsByUser(userId);
+  }
+  @GetMapping("/by-user/{userId}/incompleted")
+  public List<Interview> getInCompletedInterviewsByUser(@PathVariable Long userId){
+      return interviewService.getInCompletedInterviewsByUser(userId);
+  }
+  @GetMapping("/completed")
+  public List<Interview> getCompletedInterviews() {
+      return interviewService.getCompletedInterviews();
+  }
+  @GetMapping("/Scheduled")
+  public List<Interview> getScheduledInterviews() {
+      return interviewService.getInCompletedInterviews();
+  }
 }
 
 

@@ -1,11 +1,14 @@
 package com.esprit.stage.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -54,6 +57,7 @@ public class User {
     private String email;
     @Enumerated(EnumType.STRING)
     private role Role;
+
 
 
 }

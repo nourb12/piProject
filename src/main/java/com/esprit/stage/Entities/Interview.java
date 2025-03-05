@@ -31,6 +31,7 @@ public class Interview {
     @Enumerated(EnumType.STRING)
     private StatusType status;
     private LocalDateTime createdAt;
+    private String tuteur;
     @ManyToOne
     @JoinColumn(name = "student_id")
     private User student;
@@ -116,6 +117,14 @@ public class Interview {
     public void setTitle(@NotNull String title) {
         this.title = title;
     }
+  public String getTuteur() {
+    return tuteur;
+  }
+
+  public void setTuteur(String tuteur) {
+    this.tuteur = tuteur;
+  }
+
 
 
 

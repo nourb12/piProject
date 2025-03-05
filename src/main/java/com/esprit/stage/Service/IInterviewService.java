@@ -10,4 +10,11 @@ public interface IInterviewService {
     public Interview addInterview(Interview interview,Long studentId, Long hrId);
     public Interview updateInterview(Interview interview, long id);
     public void deleteInterview(long id);
+    public List<Interview> getInterviewsByUser(Long userId);
+    public List<Interview> getCompletedInterviewsByUser(Long userId);
+    public List<Interview> getInCompletedInterviewsByUser(Long userId);
+    public List<Interview> getCompletedInterviews();
+    public List<Interview> getInCompletedInterviews();
+
+
 }
