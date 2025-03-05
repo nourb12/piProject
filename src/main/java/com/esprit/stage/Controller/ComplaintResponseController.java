@@ -10,6 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/complaint-responses")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ComplaintResponseController {
 
     private final ComplaintResponseService complaintResponseService;

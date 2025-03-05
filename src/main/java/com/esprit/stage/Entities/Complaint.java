@@ -17,7 +17,7 @@ public class Complaint {
     private String subject;
     private String description;
     private Date submissionDate;
-    private String status;
+    private String status = "In Progress";
 
     @OneToOne(mappedBy = "complaint", cascade = CascadeType.ALL)
     @JsonBackReference

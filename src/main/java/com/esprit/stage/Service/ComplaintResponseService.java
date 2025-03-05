@@ -21,10 +21,22 @@ public class ComplaintResponseService {
     }
 
     public ComplaintResponse createComplaintResponse(ComplaintResponse response, Integer complaintId) {
-        Optional<Complaint> complaint = complaintRepository.findById(complaintId);
-        if (complaint.isPresent()) {
-            response.setComplaint(complaint.get());
-            return complaintResponseRepository.save(response);
+        Optional<Complaint> complaintOptional = complaintRepository.findById(complaintId);
+
+        if (complaintOptional.isPresent()) {
+            Complaint complaint = complaintOptional.get();
+
+            // Associer la réponse à la plainte
+            response.setComplaint(complaint);
+
+            // Sauvegarder la réponse
+            ComplaintResponse savedResponse = complaintResponseRepository.save(response);
+
+            // ✅ Mettre à jour le statut de la plainte
+            complaint.setStatus("Treated");
+            complaintRepository.save(complaint);
+
+            return savedResponse;
         } else {
             throw new RuntimeException("Complaint not found with ID: " + complaintId);
         }
@@ -35,17 +47,25 @@ public class ComplaintResponseService {
     }
 
     public ComplaintResponse getComplaintResponseById(Integer id) {
-        return complaintResponseRepository.findById(id).orElseThrow(() -> new RuntimeException("ComplaintResponse not found"));
+        return complaintResponseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ComplaintResponse not found with ID: " + id));
     }
 
     public ComplaintResponse updateComplaintResponse(Integer id, ComplaintResponse updatedResponse) {
         ComplaintResponse existingResponse = getComplaintResponseById(id);
+
         existingResponse.setMessage(updatedResponse.getMessage());
         existingResponse.setResponseDate(updatedResponse.getResponseDate());
+
         return complaintResponseRepository.save(existingResponse);
     }
 
     public void deleteComplaintResponse(Integer id) {
+        // Vérifier si la réponse existe avant suppression
+        if (!complaintResponseRepository.existsById(id)) {
+            throw new RuntimeException("ComplaintResponse not found with ID: " + id);
+        }
+
         complaintResponseRepository.deleteById(id);
     }
 }
