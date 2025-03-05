@@ -41,6 +41,65 @@ updateInterview(interviewId: number, interviewData: any): Observable<any> {
   deleteInterview(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
 }
+getCompletedInterviews() : Observable<any[]>{
+  const url = `${this.apiUrl}/completed`;
+ 
+  try {
+    const response =  this.http.get<any>(url)
+    return response;
+  }
+  catch (error) {
+    throw error;
+  }
+}
+getInCompletedInterviews() : Observable<any[]>{
+  const url = `${this.apiUrl}/Scheduled`;
+
+ 
+  try {
+    const response =  this.http.get<any>(url)
+    return response;
+  }
+  catch (error) {
+    throw error;
+  }
+}
+getInterviewsByUser(userId : number) : Observable<any[]>{
+  const url = `${this.apiUrl}/by-user/${userId}`;
+  try {
+    const response =  this.http.get<any>(url)
+    return response;
+  }
+  catch (error) {
+    throw error;
+  }
+
+}
+getCompletedInterviewsByUser(userId : number) : Observable<any[]>{
+  const url = `${this.apiUrl}/by-user/${userId}/completed`;
+  try {
+    const response =  this.http.get<any>(url)
+    return response;
+  }
+  catch (error) {
+    throw error;
+  }
+
+}
+getInCompletedInterviewsByUser(userId : number) : Observable<any[]>{
+  const url = `${this.apiUrl}/by-user/${userId}/incompleted`;
+  try {
+    const response =  this.http.get<any>(url)
+    return response;
+  }
+  catch (error) {
+    throw error;
+  }
+
+}
+
+
+
 
 
 

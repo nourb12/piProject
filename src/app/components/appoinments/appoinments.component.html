@@ -8,6 +8,29 @@
         <!-- Dashboard Stats -->
             <div class="row mt-5 text-center">
 <div id="calendar-container">
+
+<!-- Top section with Select Users and Add Event button -->
+<div class="d-flex justify-content-between mb-4">
+    <div class="form-group" >
+      <label for="userSelect">Select Users</label>
+      <select id="userSelect" class="form-control" [(ngModel)]="selectedUsers" (change)="onUserChange()">
+        <option value="0">All</option>
+        <option *ngFor="let user of users" [value]="user.userId">{{ user.username }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mb-4">
+    <div class="form-group">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="completed" (change)="onFilterChange()">
+            <mat-radio-button value="all">All</mat-radio-button>
+            <mat-radio-button value="COMPLETED">Completed</mat-radio-button>
+            <mat-radio-button value="SCHEDULED">Scheduled</mat-radio-button>
+        </mat-radio-group>
+        
+    </div>
+  </div>
+
+
     <!-- Calendar navigation buttons -->
     <div id="cal-buttons">
         <div id="cal-date-nav-buttons">
@@ -48,6 +71,7 @@
         <mwl-calendar-day-view *ngSwitchCase="Calendarview.Day" [viewDate]="viewDate" [events]="Interviews" locale="fr" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimesChanged($event)" [refresh]="refresh" ></mwl-calendar-day-view>
   
     </span>
+    <app-colorlegends></app-colorlegends>
 
 
 </div>

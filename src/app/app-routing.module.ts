@@ -9,6 +9,7 @@ import { ProfilebackComponent } from './profileback/profileback.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { IntershipoffersComponent } from './intershipoffers/intershipoffers.component';
 import { AppoinmentsComponent } from './components/appoinments/appoinments.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 const routes: Routes = [
 
@@ -22,7 +23,9 @@ const routes: Routes = [
   { path: 'login', component: LoginfrontComponent },
   { path: 'homeback', component: HomebackComponent },
   { path: 'profileback', component: ProfilebackComponent },
-  {path: 'intership' , component: IntershipoffersComponent}
+  {path: 'intership' , component: IntershipoffersComponent},
+  {path: 'stats' , component:StatsComponent}
+
  // { path: '**', redirectTo: 'front', pathMatch: 'full' } // Gère les routes inconnues
 ];
 

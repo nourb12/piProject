@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { InterviewserviceService } from 'src/app/services/interviewservice.service';
 import { UserserviceService } from 'src/app/services/userservice.service';
@@ -18,6 +19,9 @@ export class AddInterviewComponent implements OnInit{
   form: FormGroup;
   studentId !: number;
   refresh = new Subject<void>();
+  existingInterviews : any[] = [];
+  isCompleted = false; 
+
   
 
   constructor(
@@ -25,22 +29,30 @@ export class AddInterviewComponent implements OnInit{
     public dialogRef: MatDialogRef<AddInterviewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private UserService : UserserviceService,
-    private InterviewService : InterviewserviceService
+    private InterviewService : InterviewserviceService,
+    private router: Router ,
+
+
   ){
     console.log("Dialog Data:", data);
-    this.Interview = data.interview ? { ...data.interview } : this.initializeNewInterview();
+
+        this.Interview = data.interview ? { ...data.interview } : this.initializeNewInterview();
         this.isEditMode = !!data.interview; // Ensures it's set to true if editing
-    this.form = this.fb.group({
-      title: [this.Interview.title, Validators.required],
-      location: [this.Interview.location],
-      description: [this.Interview.description],
-      startDateTime: [this.Interview.startDateTime, Validators.required],
-      endDateTime: [this.Interview.endDateTime, Validators.required],
-      status: [this.Interview.status, Validators.required],
-      studentId : [this.Interview.studentId],
-      hrId :[this.Interview.hrId]
-      
-    });
+
+        this.isCompleted = this.Interview.status === 'COMPLETED';
+
+        this.form = this.fb.group({
+          title: [{ value: this.Interview.title, disabled: this.isCompleted }, Validators.required],
+          location: [{ value: this.Interview.location, disabled: this.isCompleted }],
+          description: [{ value: this.Interview.description, disabled: this.isCompleted }],
+          startDateTime: [{ value: this.Interview.startDateTime, disabled: this.isCompleted }, Validators.required],
+          endDateTime: [{ value: this.Interview.endDateTime, disabled: this.isCompleted }, Validators.required],
+          status: [{ value: this.Interview.status, disabled: this.isCompleted }, Validators.required],
+          tuteur: [{ value: this.Interview.tuteur, disabled: this.isCompleted }, Validators.required],
+          studentId: [{ value: this.Interview.studentId, disabled: this.isCompleted }],
+          hrId: [{ value: this.Interview.hrId, disabled: this.isCompleted }]
+        });
+        
   }
 
   ngOnInit(): void {
@@ -50,6 +62,11 @@ export class AddInterviewComponent implements OnInit{
   
       console.log("hiii", this.users);  // Log the users array after it's updated
       this.form.patchValue({ studentId: this.Interview.studentId });
+
+      this.InterviewService.getAllInterviews().subscribe((interviews: any[]) => {
+        this.existingInterviews = interviews;
+      });
+    
   
     });
   }
@@ -67,6 +84,7 @@ export class AddInterviewComponent implements OnInit{
       startDateTime: new Date().toISOString().substring(0, 16),
       endDateTime: new Date().toISOString().substring(0, 16),
       status:'',
+      tuteur:'',
       studentId : 0,
       hrId:3
     };
@@ -85,11 +103,8 @@ export class AddInterviewComponent implements OnInit{
     const datePipe = new DatePipe('en-US');
     const startDateTime = datePipe.transform(this.form.value.startDateTime, 'yyyy-MM-ddTHH:mm:ss') ?? this.form.value.startDateTime;
     const endDateTime = datePipe.transform(this.form.value.endDateTime, 'yyyy-MM-ddTHH:mm:ss') ?? this.form.value.endDateTime;
-    const studentId = this.form.value.studentId ?? this.Interview.studentId;  // Ensure the correct Student ID
-    const hrId = 3; // Set HR ID
-  
-    this.Interview.studentId = studentId; // Ensure local object is updated
-  
+    const studentId = this.form.value.studentId ?? this.Interview.studentId;
+    
     const newInterview = {
       title: this.form.value.title,
       location: this.form.value.location,
@@ -97,29 +112,30 @@ export class AddInterviewComponent implements OnInit{
       startDateTime: startDateTime,
       endDateTime: endDateTime,
       status: this.form.value.status,
-      student: { userId: studentId },  // ✅ Send full student object
-    
+      tuteur:this.form.value.tuteur,
+      student: { userId: studentId },
     };
   
-    console.log("Sending interview:", newInterview);
-    console.log('Student ID:', studentId);
-    console.log('HR ID:', hrId);
-    console.log('Interview ID:', this.Interview.interviewId);
+    // 🛑 Pass `this.Interview.interviewId` when updating to ignore it in conflict checking
+    if (this.hasTimeConflict(startDateTime, endDateTime, this.isEditMode ? this.Interview.interviewId : undefined)) {
+      if (!window.confirm("You have existing interviews at this time. Do you want to continue?")) {
+        return;
+      }
+    }
   
     if (this.isEditMode && this.Interview.interviewId) {
-      console.log("Updating interview with new student ID:", studentId);
       this.InterviewService.updateInterview(this.Interview.interviewId, newInterview).subscribe(res => {
-        console.log("Updated interview:", res);
         this.dialogRef.close({ interview: res, isEditMode: this.isEditMode });
       });
     } else {
-      this.InterviewService.addInterview(newInterview, studentId, hrId).subscribe(res => {
-        console.log("Added interview:", res);
+      this.InterviewService.addInterview(newInterview, studentId, 3).subscribe(res => {
         this.dialogRef.close({ interview: res, isEditMode: this.isEditMode });
-        this.refresh.next();
+        window.location.href = '/appoinments';
       });
     }
   }
+  
+  
   
   
   
@@ -141,6 +157,23 @@ export class AddInterviewComponent implements OnInit{
     const endDateTime = new Date(this.form.value.endDateTime);
     return startDateTime >= endDateTime;
   }
+
+hasTimeConflict(startDateTime: string, endDateTime: string, interviewId?: number): boolean {
+  const newStart = new Date(startDateTime).getTime();
+  const newEnd = new Date(endDateTime).getTime();
+
+  return this.existingInterviews.some(interview => {
+    //Ignore the same interview when updating
+    if (interview.interviewId === interviewId) {
+      return false;
+    }
+
+    const existingStart = new Date(interview.startDateTime).getTime();
+    const existingEnd = new Date(interview.endDateTime).getTime();
+
+    return newStart === existingStart || (newStart > existingStart && newStart < existingEnd);
+  });
+}
 
 
 
