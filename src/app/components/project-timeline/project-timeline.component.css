@@ -1,0 +1,51 @@
+/* ✅ Container de la timeline */
+.timeline-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* ✅ Barre horizontale de la timeline */
+  .timeline {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    border-top: 4px solid #007bff;
+    padding-top: 20px;
+  }
+  
+  /* ✅ Élément de la timeline */
+  .timeline-item {
+    position: relative;
+    text-align: center;
+    margin: 0 30px;
+    min-width: 120px;
+  }
+  
+  /* ✅ Contenu de la timeline */
+  .timeline-content {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+  }
+  
+  /* ✅ Barre de progression */
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+  }
+  

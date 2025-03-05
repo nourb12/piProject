@@ -1,0 +1,22 @@
+<div class="timeline-container">
+    <div class="timeline">
+      <div *ngFor="let project of projects" class="timeline-item">
+        <div class="timeline-content">
+          <h5>{{ project.title }}</h5>
+          <p><strong>Start:</strong> {{ project.startDate }}</p>
+          <p><strong>End:</strong> {{ project.endDate }}</p>
+          <div class="progress-container">
+            <div class="progress-bar" [style.width.%]="project.progress" 
+                 [ngClass]="{
+                   'bg-warning': project.status === 'PLANNED',
+                   'bg-primary': project.status === 'IN_PROGRESS',
+                   'bg-success': project.status === 'COMPLETED'
+                 }">
+            </div>
+          </div>
+          <small>{{ project.progress }}%</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,21 @@
+/* Augmenter la taille du logo tout en gardant un bon alignement */
+.logo img.sitename {
+    max-width: 200px; /* Augmente la taille du logo */
+    height: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Assurer que le logo ne dépasse pas la barre blanche */
+.header {
+    display: flex;
+    align-items: center;
+    height: 80px; /* Ajuste la hauteur de la navbar si nécessaire */
+    padding: 10px 20px;
+}
+
+/* Ajustement pour les écrans mobiles */
+@media (max-width: 768px) {
+    .logo img.sitename {
+        max-width: 160px; /* Taille réduite pour mobile */
+    }
+}

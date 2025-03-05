@@ -1,0 +1,56 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Archived Projects</h4>
+      </div>
+    </div>
+    
+    <app-notification-icon></app-notification-icon>
+    <h2 class="text-center mb-4">List of Archived Projects</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card shadow p-4">
+          <table class="table table-striped table-hover table-bordered shadow">
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let project of archivedProjects">
+                <td>{{ project.id }}</td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.startDate }}</td>
+                <td>{{ project.endDate }}</td>
+                <td>
+                  <span class="badge bg-secondary">
+                    ARCHIVED
+                  </span>
+                </td>   
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-end mt-3">
+            <button routerLink="/list-project" class="btn btn-primary btn-lg shadow-sm">
+              ⬅ Back to Active Projects
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footerback></app-footerback>
