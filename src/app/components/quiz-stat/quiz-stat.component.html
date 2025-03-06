@@ -1,0 +1,50 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Title -->
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">📊 Quiz Statistics</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="white-box">
+          <div class="row">
+            <!-- Statistic Type Selector -->
+            <select id="statType" class="form-control" (change)="updateStatType($event)">
+              <option value="scores">Average Scores by Specialty</option>
+              <option value="count">Number of Quizzes by Specialty</option>
+              <option value="levelScores">Average Score by Level</option>
+              <option value="successRate">Success Rate per Quiz</option>
+              <option value="correctPercentage">Percentage of Correct Answers per Question</option>
+            </select>
+
+            <!-- Chart Type Selector -->
+            <div class="col-md-4">
+              <label for="chartType">Chart Type:</label>
+              <select id="chartType" class="form-control" (change)="updateChartType($event)">
+                <option *ngFor="let type of chartTypes" [value]="type">{{ type | uppercase }}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Chart Area -->
+          <div class="row mt-4">
+            <div class="col-md-12 text-center">
+              <canvas id="quizStatsChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Back Button -->
+          <div class="text-right mt-3">
+            <a routerLink="/list-quiz" class="btn btn-primary">🔙 Back to Quiz List</a>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

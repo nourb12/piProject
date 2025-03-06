@@ -1,0 +1,74 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Créer un Quiz</h4>
+      </div>
+    </div>
+
+    <div class="white-box">
+      <h2 class="text-center">Créer un Nouveau Quiz</h2>
+
+      <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Champ Titre -->
+        <div class="form-group">
+          <label for="title">Titre</label>
+          <input id="title" type="text" formControlName="title" class="form-control" placeholder="Entrez le titre du quiz">
+          <div *ngIf="quizForm.get('title')?.invalid && quizForm.get('title')?.touched" class="text-danger">
+            Le titre est requis et doit contenir au moins 3 caractères.
+          </div>
+        </div>
+
+        <!-- Champ Description -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" class="form-control" placeholder="Entrez une description"></textarea>
+          <div *ngIf="quizForm.get('description')?.invalid && quizForm.get('description')?.touched" class="text-danger">
+            La description est requise et doit contenir au moins 5 caractères.
+          </div>
+        </div>
+
+        <!-- Champ Spécialité -->
+        <div class="form-group">
+          <label for="specialite">Spécialité</label>
+          <input id="specialite" type="text" formControlName="specialite" class="form-control" placeholder="Entrez la spécialité">
+          <div *ngIf="quizForm.get('specialite')?.invalid && quizForm.get('specialite')?.touched" class="text-danger">
+            La spécialité est requise et doit contenir au moins 3 caractères.
+          </div>
+        </div>
+
+        <!-- Champ Date -->
+        <div class="form-group">
+          <label for="dateQuiz">Date</label>
+          <input id="dateQuiz" type="date" formControlName="dateQuiz" class="form-control">
+          <div *ngIf="quizForm.get('dateQuiz')?.invalid && quizForm.get('dateQuiz')?.touched" class="text-danger">
+            La date est requise.
+          </div>
+        </div>
+
+        <!-- Sélection du Niveau -->
+        <div class="form-group">
+          <label for="level">Niveau</label>
+          <select id="level" class="form-control" formControlName="level">
+            <option value="" disabled>Sélectionnez un niveau</option>
+            <option *ngFor="let lvl of levels" [value]="lvl">{{ lvl }}</option>
+          </select>
+          <div *ngIf="quizForm.get('level')?.invalid && quizForm.get('level')?.touched" class="text-danger">
+            Veuillez sélectionner un niveau.
+          </div>
+        </div>
+
+        <!-- Boutons -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" [disabled]="quizForm.invalid">Créer le Quiz</button>
+          <a routerLink="/list-quiz" class="btn btn-secondary">Annuler</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Edit Question</h4>
+      </div>
+    </div>
+
+    <div class="white-box">
+      <h2 class="text-center">Edit a Question</h2>
+
+      <form [formGroup]="questionForm" (ngSubmit)="updateQuestion()">
+        
+        <!-- Content Field -->
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea id="content" formControlName="content" class="form-control" placeholder="Enter the question content"></textarea>
+          <div *ngIf="questionForm.get('content')?.invalid && questionForm.get('content')?.touched" class="text-danger">
+            Content is required and must be at least 5 characters long.
+          </div>
+        </div>
+
+        <!-- Difficulty Selection -->
+        <div class="form-group">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty" class="form-control" formControlName="difficulty">
+            <option value="" disabled>Select difficulty</option>
+            <option value="EASY">Easy</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HARD">Hard</option>
+          </select>
+          <div *ngIf="questionForm.get('difficulty')?.invalid && questionForm.get('difficulty')?.touched" class="text-danger">
+            Please select a difficulty level.
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" [disabled]="questionForm.invalid">Update</button>
+          <a routerLink="/questions-list" class="btn btn-secondary">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+<div class="quiz-container">
+  <!-- 🔹 Filter & Search Bar Section -->
+  <div class="filter-container">
+    <div class="filter-group">
+      <label for="levelSelect"><i class="fas fa-filter"></i> Filter by level:</label>
+      <select id="levelSelect" [(ngModel)]="selectedLevel" (change)="filterQuizzesByLevel()" class="custom-select">
+        <option value="">All</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Expert">Expert</option>
+      </select>
+    </div>
+  
+    <div class="search-group">
+      <input type="text" [(ngModel)]="searchTerm" (input)="searchQuizzes()" 
+             placeholder="🔍 Search by specialty..." class="search-input">
+    </div>
+  </div>
+
+  <!-- 🚨 Display if quizzes are locked -->
+  <div *ngIf="isQuizTerminated" class="alert alert-danger">
+    <h2>🚫 You do not have access to this quiz.</h2>
+  </div>
+
+  <!-- Display quiz list -->
+  <div *ngIf="!selectedQuizId && !isQuizTerminated">
+    <h2 class="quiz-list-title">Quiz List</h2>
+    <div class="quiz-cards-container">
+      <div *ngFor="let quiz of quizzes" class="quiz-card">
+        <h3>{{ quiz.title }}</h3>
+        <p class="quiz-level">🔹 Level: {{ quiz.level }}</p> 
+        <p class="quiz-speciality">📌 Specialty: {{ quiz.specialite }}</p>
+        <button (click)="selectQuiz(quiz.id)" class="start-quiz-btn">Start</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Display selected quiz -->
+  <div *ngIf="selectedQuizId">
+    <div class="quiz-timer">
+      <h3>⏳ Time remaining: {{ remainingQuizTime }} seconds</h3>
+    </div>
+
+    <div class="questions-container">
+      <div *ngFor="let question of questions" class="question-card">
+        <h3>{{ question.content }}</h3>
+        <div class="answers-container">
+          <div *ngFor="let answer of answers[question.id]" 
+               class="answer-option" 
+               [class.selected]="selectedAnswers[question.id] === answer.id"
+               (click)="selectAnswer(question.id, answer.id)">
+            <input type="radio" 
+                   name="question{{ question.id }}" 
+                   [value]="answer.id">
+            {{ answer.response }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="submitQuiz()" class="submit-btn">Submit</button>
+  </div>
+
+  <!-- Display results -->
+  <div *ngIf="correctAnswersCount + incorrectAnswersCount > 0" class="quiz-result">
+    <h3>Quiz Result:</h3>
+    <p class="correct">✅ Correct answers: {{ correctAnswersCount }}</p>
+    <p class="incorrect">❌ Incorrect answers: {{ incorrectAnswersCount }}</p>
+  </div>
+
+  <!-- Badge Section -->
+  <div *ngIf="badge" id="badgeElement" class="badge">
+    <div class="badge-header">
+      <h2>{{ badge?.quizTitle }}</h2>
+      <p class="speciality">{{ badge?.speciality }}</p>
+    </div>
+    <div class="badge-body">
+      <p class="score">Score: {{ badge?.score }}</p>
+      <p class="remark">{{ badge?.remark }}</p>
+      <p class="date">{{ badge?.date }}</p>
+    </div>
+  </div>
+
+  <!-- Download the badge as a PDF -->
+  <button *ngIf="badge" (click)="generatePDF()" class="download-btn">Download PDF Badge</button>
+</div>

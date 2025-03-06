@@ -1,0 +1,43 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Liste des Questions du Quiz</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="white-box">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let question of questions">
+                <td>{{ question.id }}</td>
+                <td>{{ question.content }}</td>
+                <td>
+                  <a [routerLink]="['/edit-question', question.id]" class="btn btn-warning btn-sm">Update</a>
+                  <button class="btn btn-danger btn-sm" (click)="deleteQuestion(question.id)">Delete</button>
+                  <a [routerLink]="['/add-answer', question.id]" class="btn btn-success btn-sm">Add answer</a>
+                  <a [routerLink]="['/answer-list', question.id]" class="btn btn-info btn-sm">Answer List</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="text-right mt-3">
+            <a [routerLink]="['/add-question', quizId]" class="btn btn-primary">Add a Question</a>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
