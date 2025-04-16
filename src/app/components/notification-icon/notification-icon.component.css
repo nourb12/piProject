@@ -1,0 +1,73 @@
+/* notification-icon.component.css */
+.notification-container {
+    position: fixed; /* Fix the icon to the screen */
+    top: 25px; /* Adjust the distance from the top */
+    right: 320px; /* Adjust the distance from the right */
+    z-index: 9999; /* Ensure the icon is above other content */
+  }
+  
+  .notification-icon {
+    font-size: 2rem; /* Adjust size of the bell icon */
+    cursor: pointer;
+    color: #544938;
+    transition: color 0.3s;
+  }
+  
+  .notification-icon:hover {
+    color: #ff5722; /* Color change on hover */
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -5px; /* Position the badge above the bell */
+    right: -5px; /* Position the badge to the right of the bell */
+    background-color: rgb(191, 30, 30);
+    color: white;
+    border-radius: 50%;
+    padding: 0.5em 0.8em;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  .projects-alert-list {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Keep it fixed next to the bell */
+    top: 40px; /* Position the project list right below the bell */
+    right: 0; /* Align it to the right of the bell */
+    z-index: 9998; /* Make sure the alert list is under the icon */
+    display: none; /* Initially hidden */
+  }
+  
+  .projects-alert-list.show {
+    display: block; /* Show the project list when toggle is activated */
+  }
+  
+  .projects-alert-list h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  
+  .project-alert-item {
+    margin-bottom: 10px;
+  }
+  
+  .project-alert-item strong {
+    color: #d32f2f;
+  }
+  
+  .project-alert-item em {
+    color: #ff5722;
+    font-style: normal;
+  }
+  
+  .project-alert-item span {
+    display: block;
+    color: #757575;
+  }
+  

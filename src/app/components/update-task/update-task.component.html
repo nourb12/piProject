@@ -1,0 +1,31 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Add Project</h4>
+            </div>
+        </div>
+<div *ngIf="taskForm">
+    <h2>Edit Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" type="text" />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+      </div>
+      <div>
+        <label for="position">Position</label>
+        <input id="position" formControlName="position" type="number" />
+      </div>
+  
+      <button type="submit" [disabled]="taskForm.invalid">Update Task</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+  

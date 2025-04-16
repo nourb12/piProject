@@ -1,0 +1,23 @@
+.voice-btn {
+    background-color: #4f46e5; /* Indigo */
+    color: white;
+    border: none;
+    border-radius: 9999px; /* pill shape */
+    padding: 10px 16px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .voice-btn:hover {
+    background-color: #4338ca;
+  }
+  
+  .voice-btn:active {
+    background-color: #3730a3;
+  }
+  

@@ -1,0 +1,20 @@
+<div class="notification-container">
+    <div class="notification-icon" (click)="toggleProjects()">
+      <!-- Bell icon -->
+      <i class="fas fa-bell"></i>
+      <!-- Show alert count only if greater than 0 -->
+      <span *ngIf="alertCount > 0" class="notification-badge">{{ alertCount }}</span>
+    </div>
+  
+    <!-- Projects with deadline alerts -->
+    <div [class.show]="showProjects" class="projects-alert-list">
+      <h3>Projects with Deadline Alerts</h3>
+      <ul>
+        <li *ngFor="let project of deadlineAlertProjects" class="project-alert-item">
+          <strong>{{ project.title }}</strong> - <em>Deadline Alert!</em><br>
+          <span>Deadline: {{ project.endDate | date }}</span><br>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

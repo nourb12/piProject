@@ -1,0 +1,87 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper" class="p-4">
+  <div class="container-fluid">
+    <h2 class="text-center mb-4">Trello Board – Project {{ projectId }}</h2>
+    <h2 class="text-center mb-4">Trello Board – Project {{ projectId }}</h2>
+
+    <div class="row d-flex justify-content-between">
+      <!-- Planned Column -->
+      <div class="col-md-4">
+        <h4 class="text-primary text-center">Planned</h4>
+        <div
+          cdkDropList
+          #plannedList="cdkDropList"
+          [cdkDropListData]="plannedTasks"
+          [cdkDropListConnectedTo]="['inProgressList', 'completedList']"
+          (cdkDropListDropped)="drop($event, 'PLANNED')"
+          class="task-column"
+        >
+          <div
+            *ngFor="let task of plannedTasks"
+            cdkDrag
+            class="task-card"
+          >
+            <h5>{{ task.title }}</h5>
+            <p>{{ task.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- In Progress Column -->
+      <div class="col-md-4">
+        <h4 class="text-warning text-center">In Progress</h4>
+        <div
+          id="inProgressList"
+          cdkDropList
+          #inProgressList="cdkDropList"
+          [cdkDropListData]="inProgressTasks"
+          [cdkDropListConnectedTo]="['plannedList', 'completedList']"
+          (cdkDropListDropped)="drop($event, 'IN_PROGRESS')"
+          class="task-column"
+        >
+          <div
+            *ngFor="let task of inProgressTasks"
+            cdkDrag
+            class="task-card"
+          >
+            <h5>{{ task.title }}</h5>
+            <p>{{ task.description }}</p>
+           
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed Column -->
+      <div class="col-md-4">
+        <h4 class="text-success text-center">Completed</h4>
+        <div
+          id="completedList"
+          cdkDropList
+          #completedList="cdkDropList"
+          [cdkDropListData]="completedTasks"
+          [cdkDropListConnectedTo]="['plannedList', 'inProgressList']"
+          (cdkDropListDropped)="drop($event, 'COMPLETED')"
+          class="task-column"
+        >
+          <div
+            *ngFor="let task of completedTasks"
+            cdkDrag
+            class="task-card"
+          >
+            <h5>{{ task.title }}</h5>
+            <p>{{ task.description }}</p>
+ 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-end mt-4">
+      <button routerLink="/list-project" class="btn btn-secondary">⬅ Back to Projects</button>
+    </div>
+  </div>
+</div>
+
+<app-footerback></app-footerback>
