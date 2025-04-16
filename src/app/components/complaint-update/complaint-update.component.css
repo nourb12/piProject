@@ -1,119 +1,98 @@
-/* Container for the Update Complaint Form */
-.update-complaint-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Conteneur principal */
+.container-fluid {
+  padding: 40px 20px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre */
+h2 {
+  font-size: 28px;
+  color: #1f2937;
+  margin-bottom: 25px;
+  border-left: 5px solid #4f46e5;
+  padding-left: 15px;
+}
+
+/* Formulaire */
+form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Groupes de champs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Étiquettes */
+label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+/* Champs input & textarea */
+input[type='text'],
+input[type='date'],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+  background-color: #f3f4f6;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background-color: #ffffff;
+}
+
+/* Boutons */
+.btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit {
+  background-color: #4f46e5;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #4338ca;
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
   }
-  
-  .form-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
+
+  h2 {
+    font-size: 22px;
   }
-  
-  /* Form Styling */
-  .update-complaint-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    font-size: 1rem;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    border-color: #cc1111;
-    outline: none;
-  }
-  
-  .form-group textarea {
-    min-height: 100px;
-  }
-  
-  /* Buttons */
-  .form-actions {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .btn {
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-  }
-  
-  .btn-submit {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-  
-  .btn-submit:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-  }
-  
-  .btn-cancel {
-    background-color: #f44336;
-    color: white;
-    text-decoration: none;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    display: inline-block;
-    text-align: center;
-  }
-  
-  .btn-cancel:hover {
-    background-color: #e53935;
-    transform: scale(1.05);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .update-complaint-container {
-      padding: 20px;
-    }
-  
-    .form-title {
-      font-size: 1.5rem;
-    }
-  
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      padding: 8px;
-    }
-  
-    .btn {
-      padding: 10px 20px;
-      font-size: 0.9rem;
-    }
-  }
-  
+}

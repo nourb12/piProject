@@ -9,33 +9,73 @@
       </div>
     </div>
 
-    <!-- Button to navigate to Complaint Add page -->
+    <!-- Recherche par sentiment (liste déroulante) -->
+    <div class="search-container">
+      <select [(ngModel)]="searchSentiment" (ngModelChange)="applyFilter()" class="search-dropdown">
+        <option value="">-- Select Sentiment --</option>
+        <option value="Positif">Positif</option>
+        <option value="Neutre">Neutre</option>
+        <option value="Négatif">Négatif</option>
+      </select>
+    </div>
+    
+    <!-- Bouton pour ajouter une réclamation -->
     <div class="actions-container">
       <button class="create-btn" routerLink="/complaint-add">Create New Complaint</button>
     </div>
-
-    <!-- Complaint Table -->
+   
+    <!-- Tableau des réclamations avec tri -->
     <table class="complaint-table">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Subject</th>
-          <th>Description</th>
-          <th>Submission Date</th>
-          <th>Status</th>
+          <th (click)="sortBy('subject')">
+            Subject
+            <span *ngIf="sortField === 'subject'">
+              {{ sortDirection === 'asc' ? '🔼' : '🔽' }}
+            </span>
+          </th>
+          <th (click)="sortBy('description')">
+            Description
+            <span *ngIf="sortField === 'description'">
+              {{ sortDirection === 'asc' ? '🔼' : '🔽' }}
+            </span>
+          </th>
+          <th (click)="sortBy('submissionDate')">
+            Submission Date
+            <span *ngIf="sortField === 'submissionDate'">
+              {{ sortDirection === 'asc' ? '🔼' : '🔽' }}
+            </span>
+          </th>
+          <th (click)="sortBy('status')">
+            Status
+            <span *ngIf="sortField === 'status'">
+              {{ sortDirection === 'asc' ? '🔼' : '🔽' }}
+            </span>
+          </th>
+          <th (click)="sortBy('sentiment')">
+            Sentiment
+            <span *ngIf="sortField === 'sentiment'">
+              {{ sortDirection === 'asc' ? '🔼' : '🔽' }}
+            </span>
+          </th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let complaint of complaints">
-          <td>{{ complaint.id_complaint }}</td>
+        <tr *ngFor="let complaint of filteredComplaints">
           <td>{{ complaint.subject }}</td>
           <td>{{ complaint.description }}</td>
           <td>{{ complaint.submissionDate | date }}</td>
           <td>{{ complaint.status }}</td>
+          <td>
+            <span [ngStyle]="{'color': getSentimentColor(complaint.sentiment)}">
+              {{ complaint.sentiment }}
+            </span>
+          </td>
           <td class="action-buttons">
             <button class="update-btn" (click)="onUpdate(complaint.id_complaint)">Update</button>
             <button class="delete-btn" (click)="onDelete(complaint.id_complaint)">Delete</button>
+            <button class="response-btn" (click)="onAddResponse(complaint.id_complaint)">Add Response</button>
           </td>
         </tr>
       </tbody>

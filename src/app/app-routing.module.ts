@@ -14,6 +14,9 @@ import { ComplaintUpdateComponent } from './components/complaint-update/complain
 import { EvaluationAddComponent } from './components/evaluation-add/evaluation-add.component';
 import { EvaluationListComponent } from './components/evaluation-list/evaluation-list.component';
 import { EvaluationUpdateComponent } from './components/evaluation-update/evaluation-update.component';
+import { StatistiqueComponent } from './components/statistique/statistique.component';
+import { ComplaintResponseAddComponent } from './components/complaint-response-add/complaint-response-add.component';
+
 const routes: Routes = [
 
 
@@ -34,7 +37,9 @@ const routes: Routes = [
   { path: 'evaluation-add', component: EvaluationAddComponent },
   { path: 'evaluation-list', component: EvaluationListComponent},
   { path: 'evaluation-update/:id', component: EvaluationUpdateComponent },
-
+  { path: 'statistiques', component: StatistiqueComponent },
+  { path: 'complaint-response-add/:complaintId', component: ComplaintResponseAddComponent },
+  
  // { path: '**', redirectTo: 'front', pathMatch: 'full' } // Gère les routes inconnues
 ];
 

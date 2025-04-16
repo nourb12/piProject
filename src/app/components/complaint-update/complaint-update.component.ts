@@ -24,8 +24,14 @@ export class ComplaintUpdateComponent implements OnInit {
   }
 
   updateComplaint() {
+    // Check if the current status is 'Treated'
+    if (this.complaint.status === 'Treated') {
+      this.complaint.status = 'In Progress';  // Change status to 'In Progress'
+    }
+
     this.complaintService.updateComplaint(this.complaintId, this.complaint).subscribe((updatedComplaint) => {
       console.log('Complaint updated successfully:', updatedComplaint);
+      // Optionally, you could navigate back to the complaint list or show a success message
     });
   }
 }

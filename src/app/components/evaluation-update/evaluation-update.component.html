@@ -4,43 +4,64 @@
 <div id="page-wrapper">
   <div class="container-fluid">
     <div class="row bg-title">
-      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-    <h2>Modifier l'Évaluation</h2>
-    <form (ngSubmit)="updateEvaluation()">
-      <div class="form-group">
-        <label for="noteGlobale">Note Globale:</label>
-        <input type="number" id="noteGlobale" [(ngModel)]="evaluation.noteGlobale" name="noteGlobale" required placeholder="Entrez la note globale" min="0" max="5" step="0.1" />
+      <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <h2>Update Evaluation</h2>
+        <form (ngSubmit)="updateEvaluation()">
+          <div class="form-group">
+            <label for="noteGlobale">Overall Rating:</label>
+            <div class="rating">
+              <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+                        (click)="setRating('noteGlobale', star)">
+                {{ getStarIcon('noteGlobale', star) }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qualiteEncadrement">Supervision Quality:</label>
+            <div class="rating">
+              <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+                        (click)="setRating('qualiteEncadrement', star)">
+                {{ getStarIcon('qualiteEncadrement', star) }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ambianceTravail">Work Environment:</label>
+            <div class="rating">
+              <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+                        (click)="setRating('ambianceTravail', star)">
+                {{ getStarIcon('ambianceTravail', star) }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="chargeTravail">Workload:</label>
+            <select id="chargeTravail" [(ngModel)]="evaluation.chargeTravail" name="chargeTravail" required>
+              <option value="" disabled>Select a workload</option>
+              <option value="good" [selected]="evaluation.chargeTravail === 'good'">Good</option>
+              <option value="medium" [selected]="evaluation.chargeTravail === 'medium'">Medium</option>
+              <option value="bad" [selected]="evaluation.chargeTravail === 'bad'">Bad</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="commentaire">Comment:</label>
+            <textarea id="commentaire" [(ngModel)]="evaluation.commentaire" name="commentaire" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="detail">Details:</label>
+            <textarea id="detail" [(ngModel)]="evaluation.detail" name="detail" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!evaluation.commentaire || !evaluation.detail || !evaluation.chargeTravail">
+            Update Evaluation
+          </button>
+        </form>
       </div>
-  
-      <div class="form-group">
-        <label for="qualiteEncadrement">Qualité de l'encadrement:</label>
-        <input type="number" id="qualiteEncadrement" [(ngModel)]="evaluation.qualiteEncadrement" name="qualiteEncadrement" required placeholder="Entrez la qualité de l'encadrement" min="0" max="5" step="0.1" />
-      </div>
-  
-      <div class="form-group">
-        <label for="ambianceTravail">Ambiance de travail:</label>
-        <input type="number" id="ambianceTravail" [(ngModel)]="evaluation.ambianceTravail" name="ambianceTravail" required placeholder="Entrez l'ambiance de travail" min="0" max="5" step="0.1" />
-      </div>
-  
-      <div class="form-group">
-        <label for="chargeTravail">Charge de travail:</label>
-        <input type="number" id="chargeTravail" [(ngModel)]="evaluation.chargeTravail" name="chargeTravail" required placeholder="Entrez la charge de travail" min="0" max="5" step="0.1" />
-      </div>
-  
-      <div class="form-group">
-        <label for="commentaire">Commentaire:</label>
-        <textarea id="commentaire" [(ngModel)]="evaluation.commentaire" name="commentaire" required placeholder="Entrez un commentaire"></textarea>
-      </div>
-  
-      <div class="form-group">
-        <label for="detail">Détails:</label>
-        <textarea id="detail" [(ngModel)]="evaluation.detail" name="detail" required placeholder="Entrez des détails supplémentaires"></textarea>
-      </div>
-  
-      <div class="form-actions">
-        <button type="submit" class="btn btn-submit">Mettre à jour</button>
-        <a routerLink="/evaluations" class="btn btn-cancel">Annuler</a>
-      </div>
-    </form>
+    </div>
   </div>
-  
+</div>

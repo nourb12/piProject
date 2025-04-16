@@ -1,50 +1,38 @@
-.form-container {
-    background-color: #ffe5e5; /* Light red background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 20px auto;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #c62828; /* Dark red for labels */
-  }
-  
-  input[type="text"],
-  input[type="date"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #c62828;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  textarea {
-    height: 80px;
-  }
-  
-  button.submit-btn {
-    background-color: #c62828; /* Red button */
-    color: #ffffff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button.submit-btn:hover {
-    background-color: #b71c1c;
-  }
-  
+/* Container principal pour le formulaire */
+.container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f4f4f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Champs de formulaire */
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.alert {
+  font-weight: bold;
+  color: red;
+}

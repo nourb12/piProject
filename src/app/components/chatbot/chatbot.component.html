@@ -1,0 +1,9 @@
+<div class="chatbot">
+    <div class="messages">
+      <div class="user-message">{{ userMessage }}</div>
+      <div class="bot-response">{{ botResponse }}</div>
+    </div>
+    <input [(ngModel)]="userMessage" placeholder="Entrez votre message..." />
+    <button (click)="sendMessage()">Envoyer</button>
+  </div>
+  

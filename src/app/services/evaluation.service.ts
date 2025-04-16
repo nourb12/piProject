@@ -29,4 +29,9 @@ export class EvaluationService {
   deleteEvaluation(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  // Nouvelle méthode pour rechercher par note globale
+  searchEvaluationsByRating(rating: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search?rating=${rating}`);
+  }
 }

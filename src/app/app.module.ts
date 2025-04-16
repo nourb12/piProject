@@ -26,6 +26,10 @@ import { ComplaintUpdateComponent } from './components/complaint-update/complain
 import { EvaluationAddComponent } from './components/evaluation-add/evaluation-add.component';
 import { EvaluationListComponent } from './components/evaluation-list/evaluation-list.component';
 import { EvaluationUpdateComponent } from './components/evaluation-update/evaluation-update.component';
+import { MatIconModule } from '@angular/material/icon';
+import { StatistiqueComponent } from './components/statistique/statistique.component';
+import { ComplaintResponseAddComponent } from './components/complaint-response-add/complaint-response-add.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 
 @NgModule({
@@ -53,13 +57,20 @@ import { EvaluationUpdateComponent } from './components/evaluation-update/evalua
     EvaluationAddComponent,
     EvaluationListComponent,
     EvaluationUpdateComponent,
-  
+    StatistiqueComponent,
+    ComplaintResponseAddComponent,
+
+    ChatbotComponent,
+     
+   
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule
+    
 
   ],
   providers: [],

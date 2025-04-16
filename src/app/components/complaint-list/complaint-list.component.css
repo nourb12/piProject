@@ -1,94 +1,185 @@
-/* Overall container for the complaint list */
-.complaint-list-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title Styling */
-  .title {
-    text-align: center;
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Table Styling */
-  .complaint-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .complaint-table th, .complaint-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .complaint-table th {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .complaint-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .complaint-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Action buttons container */
+/* Conteneur principal */
+#page-wrapper {
+  padding: 30px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Titre */
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 20px;
+}
+
+/* Bouton "Create" */
+.actions-container {
+  margin: 15px 0 25px;
+  text-align: right;
+}
+
+.create-btn {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-btn:hover {
+  background-color: #1e40af;
+}
+
+/* Tableau */
+.complaint-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+}
+
+.complaint-table thead {
+  background-color: #1a202c;
+  color: #fff;
+}
+
+.complaint-table th,
+.complaint-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.complaint-table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.complaint-table tbody tr:hover {
+  background-color: #edf2f7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons d'action */
+.action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.action-buttons button {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.update-btn {
+  background-color: #10b981;
+}
+.update-btn:hover {
+  background-color: #059669;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+}
+.delete-btn:hover {
+  background-color: #b91c1c;
+}
+
+.response-btn {
+  background-color: #3b82f6;
+}
+.response-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Sentiment */
+.complaint-table td span {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.sentiment-positive {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.sentiment-neutral {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.sentiment-negative {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.sentiment-unknown {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .action-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: space-around;
+    flex-direction: column;
   }
-  
-  .btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+
+  .create-btn {
+    width: 100%;
   }
-  
-  .btn-update {
-    background-color: #28a745;
-    color: white;
-    border: none;
+
+  .complaint-table th,
+  .complaint-table td {
+    padding: 12px;
+    font-size: 13px;
   }
-  
-  .btn-update:hover {
-    background-color: #218838;
-    transform: scale(1.05);
+
+  /* Ajustement des bordures et espacements pour mobile */
+  .complaint-table {
+    margin-top: 10px;
   }
-  
-  .btn-delete {
-    background-color: #dc3545;
-    color: white;
-    border: none;
+
+  .complaint-table td span {
+    font-size: 12px;
+    padding: 5px 10px;
   }
-  
-  .btn-delete:hover {
-    background-color: #c82333;
-    transform: scale(1.05);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .complaint-table th, .complaint-table td {
-      padding: 10px;
-    }
-  
-    .btn {
-      padding: 8px 16px;
-      font-size: 12px;
-    }
-  }
-  
+}
+
+/* Recherche par sentiment (liste déroulante) */
+.search-container {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.search-dropdown {
+  padding: 8px 14px;
+  font-size: 15px;
+  width: 180px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-dropdown:focus {
+  border-color: #2563eb;
+}
