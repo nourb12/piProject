@@ -38,6 +38,13 @@ import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogM
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { ColorlegendsComponent } from './components/colorlegends/colorlegends.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { AddMeetingComponent } from './components/add-meeting/add-meeting.component';
+import { ListMeetingComponent } from './components/list-meeting/list-meeting.component';
+import { ToastrModule } from 'ngx-toastr';
+import { VideoCallComponent } from './components/video-call/video-call.component';
 
 
 
@@ -83,6 +90,12 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     IntershipoffersComponent,
     AppoinmentsComponent,
     AddInterviewComponent,
+    ColorlegendsComponent,
+    ConfirmationDialogComponent,
+    StatsComponent,
+    AddMeetingComponent,
+    ListMeetingComponent,
+    VideoCallComponent,
     
     
     
@@ -104,7 +117,15 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    ToastrModule.forRoot({
+      progressBar : true,
+      closeButton : true,
+      newestOnTop : true,
+      tapToDismiss: true,
+      positionClass: 'toast-bottom-right',
+      timeOut: 8000
+    })
 
 
 

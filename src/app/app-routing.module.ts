@@ -9,6 +9,10 @@ import { ProfilebackComponent } from './profileback/profileback.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { IntershipoffersComponent } from './intershipoffers/intershipoffers.component';
 import { AppoinmentsComponent } from './components/appoinments/appoinments.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { AddMeetingComponent } from './components/add-meeting/add-meeting.component';
+import { ListMeetingComponent } from './components/list-meeting/list-meeting.component';
+import { VideoCallComponent } from './components/video-call/video-call.component';
 
 const routes: Routes = [
 
@@ -22,7 +26,14 @@ const routes: Routes = [
   { path: 'login', component: LoginfrontComponent },
   { path: 'homeback', component: HomebackComponent },
   { path: 'profileback', component: ProfilebackComponent },
-  {path: 'intership' , component: IntershipoffersComponent}
+  {path: 'intership' , component: IntershipoffersComponent},
+  { path: 'addMeeting', component: AddMeetingComponent },
+  { path: 'addMeeting/:id', component: AddMeetingComponent },
+  { path: 'listMeeting', component: ListMeetingComponent },
+  { path: 'video-call', component: VideoCallComponent }
+
+
+
  // { path: '**', redirectTo: 'front', pathMatch: 'full' } // Gère les routes inconnues
 ];
 

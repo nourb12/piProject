@@ -1,0 +1,7 @@
+<div class="color-legend">
+    <div *ngFor="let category of categories" class="category">
+      <div class="color-circle" [ngStyle]="{'background-color': category.color}"></div>
+      <span>{{ category.name }}</span>
+    </div>
+  </div>
+  

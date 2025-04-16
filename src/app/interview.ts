@@ -17,8 +17,10 @@ export function customToSpe(CustomCalendarInterview: any): CalendarEvent {
         location:CustomCalendarInterview.location,
         status: CustomCalendarInterview.status,
         createdAt: datePipe.transform(CustomCalendarInterview.createdAt, 'yyyy-MM-ddTHH:mm:ss') ?? CustomCalendarInterview.createdAt.toISOString().substring(0, 19),
+        tuteur: CustomCalendarInterview.tuteur,
         hrId : CustomCalendarInterview.hrId,
         studentId : CustomCalendarInterview.studentId,
+        offreId : CustomCalendarInterview.offreId
         
 
     };

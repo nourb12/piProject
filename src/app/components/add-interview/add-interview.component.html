@@ -36,10 +36,24 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Tuteur</mat-label>
+      <textarea matInput formControlName="tuteur"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Student</mat-label>
       <mat-select formControlName="studentId" >
         <mat-option *ngFor="let user of users" [value]="user.userId">
-          {{ user.username }}
+            {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Intership Offer</mat-label>
+      <mat-select formControlName="offreId" >
+        <mat-option *ngFor="let offre of offres" [value]="offre.id">
+          {{ offre.title }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -51,7 +65,7 @@
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancelClick()">Cancel</button>
   <button mat-button color="warn" *ngIf="isEditMode" (click)="onDeleteClick()">Delete</button>
-  <button mat-raised-button color="primary" [disabled]="form.invalid || isInvalidDateOrder()" (click)="onSaveClick()">
+  <button mat-raised-button color="primary" [disabled]="form.invalid || isInvalidDateOrder()" *ngIf="!isCompleted" (click)="onSaveClick()">
     {{ isEditMode ? 'Update' : 'Save' }}
   </button>
 </mat-dialog-actions>
