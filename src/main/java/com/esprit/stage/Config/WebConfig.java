@@ -16,7 +16,10 @@ public class WebConfig  {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedOrigins("http://localhost:4200"); // Replace with your Angular app's URL
+                        .allowedOrigins("http://localhost:4200")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
+
             }
 
         };

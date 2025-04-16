@@ -31,12 +31,28 @@ public class Interview {
     @Enumerated(EnumType.STRING)
     private StatusType status;
     private LocalDateTime createdAt;
+    private String tuteur;
     @ManyToOne
     @JoinColumn(name = "student_id")
     private User student;
     @ManyToOne
     @JoinColumn(name = "hr_id")
     private User hr;
+    @ManyToOne
+    @JoinColumn(name = "offre_id")
+    private InternshipOffer offre;
+
+
+  public InternshipOffer getOffre() {
+    return offre;
+  }
+
+  public void setOffre(InternshipOffer offre) {
+    this.offre = offre;
+  }
+
+
+
 
     public long getInterviewId() {
         return InterviewId;
@@ -116,6 +132,14 @@ public class Interview {
     public void setTitle(@NotNull String title) {
         this.title = title;
     }
+  public String getTuteur() {
+    return tuteur;
+  }
+
+  public void setTuteur(String tuteur) {
+    this.tuteur = tuteur;
+  }
+
 
 
 

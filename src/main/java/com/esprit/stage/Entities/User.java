@@ -1,11 +1,15 @@
 package com.esprit.stage.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,18 +46,36 @@ public class User {
         this.email = email;
     }
 
-    public role getRole() {
-        return Role;
-    }
 
-    public void setRole(role role) {
-        Role = role;
-    }
 
     private String username;
     private String email;
     @Enumerated(EnumType.STRING)
-    private role Role;
+    private roleUser Role;
+
+
+  public roleUser getRole() {
+    return Role;
+  }
+
+  public void setRole(roleUser role) {
+    Role = role;
+  }
+
+
+  public List<Meeting> getMeetings() {
+    return meetings;
+  }
+
+  public void setMeetings(List<Meeting> meetings) {
+    this.meetings = meetings;
+  }
+
+  @ManyToMany(mappedBy = "interns")
+  @JsonIgnore
+  private List<Meeting> meetings = new ArrayList<>();
+
+
 
 
 }

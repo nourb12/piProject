@@ -3,10 +3,7 @@ package com.esprit.stage.Controller;
 import com.esprit.stage.Entities.User;
 import com.esprit.stage.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,10 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+    @PostMapping
+  public User createUser(@RequestBody User user) {
+      return userService.adduser(user);
     }
 
 }
