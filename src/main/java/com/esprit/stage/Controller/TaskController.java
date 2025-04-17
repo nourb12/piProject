@@ -2,19 +2,24 @@ package com.esprit.stage.Controller;
 
 import com.esprit.stage.Entities.Task;
 import com.esprit.stage.Entities.TaskStatus;
+import com.esprit.stage.Repository.TaskRepository;
 import com.esprit.stage.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private TaskRepository taskRepository;
 
     @GetMapping
     public List<Task> getAllTasks() {
@@ -34,13 +39,15 @@ public class TaskController {
     }
 
     @PutMapping("/project/{projectId}/tasks/{taskId}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody Task updatedTask) {
-        try {
-            Task updated = taskService.updateTask(projectId, taskId, updatedTask);
-            return ResponseEntity.ok(updated);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    public Task updateTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody Task updatedTask) {
+        Task existingTask = taskRepository.findByProjectIdAndId(projectId, taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        existingTask.setTitle(updatedTask.getTitle());
+        existingTask.setDescription(updatedTask.getDescription());
+        existingTask.setStatus(updatedTask.getStatus()); // ✅ KEY LINE// if needed
+
+        return taskService.updateTask(projectId,taskId,updatedTask); // ✅ Don't forget this
     }
 
     @DeleteMapping("/project/{projectId}/tasks/{taskId}")
@@ -67,8 +74,16 @@ public class TaskController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
     @PutMapping("/{taskId}/status")
-    public ResponseEntity<Task> updateTaskStatus(@PathVariable Long taskId, @RequestParam TaskStatus status) {
+    public ResponseEntity<Map<String, Object>> updateTaskStatus(@PathVariable Long taskId, @RequestParam TaskStatus status) {
         Task updatedTask = taskService.updateTaskStatus(taskId, status);
-        return ResponseEntity.ok(updatedTask);
+
+        long timeSpent = updatedTask.getTimeSpent();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("task", updatedTask);
+        response.put("timeSpent", timeSpent);
+
+        return ResponseEntity.ok(response);
     }
+
 }

@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,6 @@ public class TaskService {
     public Task createTask(Long projectId, Task task) {
         return projectRepository.findById(projectId).map(project -> {
             task.setProject(project);
-
-            // ✅ Set status to TODO if not provided
             if (task.getStatus() == null) {
                 task.setStatus(TaskStatus.PLANNED);
             }
@@ -43,7 +42,7 @@ public class TaskService {
     }
 
 
-    // Corrected updateTask method
+
     public Task updateTask(Long projectId, Long taskId, Task updatedTask) {
         Optional<Task> existingTaskOptional = taskRepository.findByProjectIdAndId(projectId, taskId);
 
@@ -51,7 +50,6 @@ public class TaskService {
             Task existingTask = existingTaskOptional.get();
             existingTask.setTitle(updatedTask.getTitle());
             existingTask.setDescription(updatedTask.getDescription());
-            existingTask.setPosition(updatedTask.getPosition());
             return taskRepository.save(existingTask);
         } else {
             throw new RuntimeException("Task not found with id " + taskId + " for project " + projectId);
@@ -79,10 +77,18 @@ public class TaskService {
     public Task updateTaskStatus(Long taskId, TaskStatus status) {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new ResourceNotFoundException("Task not found"));
+
+        if (status == TaskStatus.COMPLETED) {
+            task.setCompletedTime(LocalDateTime.now()); // Set completion time
+        } else if (task.getStartTime() == null) {
+            task.setStartTime(LocalDateTime.now()); // If first move, set start time
+        }
+
         task.setStatus(status);
         taskRepository.save(task);
-        projectService.updateProjectProgress(task.getProject().getId());
         return task;
     }
+
+
 
 }

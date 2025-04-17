@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -16,9 +19,10 @@ public class Task {
 
     private String title;
     private String description;
-    private Integer position;
     @Enumerated(EnumType.STRING)
     private TaskStatus status= TaskStatus.PLANNED;
+    private LocalDateTime startTime;
+    private LocalDateTime completedTime;
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
@@ -50,12 +54,20 @@ public class Task {
         this.description = description;
     }
 
-    public Integer getPosition() {
-        return position;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setPosition(Integer position) {
-        this.position = position;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getCompletedTime() {
+        return completedTime;
+    }
+
+    public void setCompletedTime(LocalDateTime completedTime) {
+        this.completedTime = completedTime;
     }
 
     public Project getProject() {
@@ -71,6 +83,12 @@ public class Task {
     }
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+    public long getTimeSpent() {
+        if (completedTime != null && startTime != null) {
+            return java.time.Duration.between(startTime, completedTime).toMinutes(); // Return minutes
+        }
+        return 0;
     }
 
 }
