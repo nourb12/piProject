@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'add-answer/:questionId', component: AddAnswerComponent },
   { path: 'answer-list/:questionId', component: ListAnswerComponent },
   { path: 'update-answer/:answerId', component: UpdateAnswerComponent },
-  { path: 'quizFront', component: QuizFrontComponent },
+  { path: 'quizFront/:specialite', component: QuizFrontComponent },
   { path: 'quiz-statistics', component: QuizStatComponent },
  // { path: '**', redirectTo: 'front', pathMatch: 'full' } // Gère les routes inconnues
 ];

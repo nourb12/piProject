@@ -4,6 +4,7 @@ import { QuestionServiceService } from 'src/app/service/question-service.service
 import { AnswerService } from 'src/app/service/answer-service.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-front',
@@ -32,12 +33,40 @@ export class QuizFrontComponent implements OnInit {
   constructor(
     private quizService: QuizService,
     private questionService: QuestionServiceService,
-    private answerService: AnswerService
+    private answerService: AnswerService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loadQuizzes();
+    this.route.paramMap.subscribe(params => {
+      const specialite = params.get('specialite');
+      if (specialite) {
+        this.loadQuizzesBySpecialite(specialite);
+      } else {
+        this.loadQuizzes(); // fallback si pas de spécialité
+      }
+    });
   }
+  loadQuizzesBySpecialite(specialite: string): void {
+    this.quizService.getQuizzesBySpecialite(specialite).subscribe(
+      (data) => { this.quizzes = data; },
+      (error) => { console.error('Erreur lors du chargement des quiz par spécialité', error); }
+    );
+  }
+
+  playQuestionAudio(questionId: number): void {
+    this.questionService.readQuestion(questionId).subscribe(
+      (audioBlob: Blob) => {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+      },
+      (error) => {
+        console.error('Erreur lors de la lecture audio de la question :', error);
+      }
+    );
+  }
+  
 
   loadQuizzes(): void {
     this.quizService.getAllQuizzes().subscribe(
@@ -164,15 +193,21 @@ export class QuizFrontComponent implements OnInit {
   }
 
   filterQuizzesByLevel(): void {
-    if (this.selectedLevel) {
-      this.quizService.getQuizzesByLevel(this.selectedLevel).subscribe(
-        (data) => { this.quizzes = data; },
-        (error) => { console.error('Erreur lors du filtrage des quiz', error); }
-      );
-    } else {
-      this.loadQuizzes();
-    }
+    this.route.paramMap.subscribe(params => {
+      const specialite = params.get('specialite');
+      if (this.selectedLevel && specialite) {
+        this.quizService.getQuizzesBySpecialiteAndLevel(specialite, this.selectedLevel.toUpperCase()).subscribe(
+          (data) => { this.quizzes = data; },
+          (error) => { console.error('Erreur lors du filtrage des quiz', error); }
+        );
+      } else if (specialite) {
+        this.loadQuizzesBySpecialite(specialite);
+      } else {
+        this.loadQuizzes();
+      }
+    });
   }
+  
 
   searchQuizzes() {
     const term = this.searchTerm.toLowerCase().trim();

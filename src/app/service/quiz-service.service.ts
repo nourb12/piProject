@@ -57,9 +57,10 @@ export class QuizService {
   getQuizzesByLevel(level: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/level/${level}`);
   }
-  getQuizzesBySpecialite(specialite: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/specialite/${specialite}`);
+  getQuizzesBySpecialite(specialite: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8088/quiz/api/quiz/bySpecialite/${specialite}`);
   }
+  
   getResultsBySpecialty(): Observable<any> {
     return this.http.get<any>('http://localhost:8088/quiz/api/quiz/stats/results-by-specialty');
   }
@@ -77,5 +78,12 @@ export class QuizService {
   getCorrectAnswerPercentageByQuestion(): Observable<any> {
     return this.http.get(`${this.baseUrl}/stats/correct-answer-percentage-by-question`);
   }
+
+  getQuizzesBySpecialiteAndLevel(specialite: string, level: string) {
+    return this.http.get<any[]>(`${this.baseUrl}/specialite/${encodeURIComponent(specialite)}/level/${level}`);
+  }
+  
+  
+  
   
 }

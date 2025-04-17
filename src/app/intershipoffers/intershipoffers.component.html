@@ -110,50 +110,24 @@
         </div><!-- End Section Title -->
 
         <!-- Internship Offers Container -->
-        <div class="container internship-offers-container">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <!-- Internship Offer 1 -->
-                <div class="col">
-                    <div class="card">
-                        <img src="assets/frontassets/img/webDeveloper.png" class="card-img-top" alt="Web Developer Internship">
-                        <div class="card-body">
-                            <h5 class="card-title">Web Developer</h5>
-                            <p class="company-name">Tech Innovators Inc.</p>
-                            <p class="internship-type">Full-Time | Remote</p>
-                            <p class="card-text">Gain hands-on experience with modern web technologies and frameworks.</p>
-                            <a [routerLink]="'/quizFront'" class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Internship Offer 2 -->
-                <div class="col">
-                    <div class="card">
-                        <img src="assets/frontassets/img/datascientist.png" class="card-img-top" alt="Data Scientist Internship">
-                        <div class="card-body">
-                            <h5 class="card-title">Data Scientist</h5>
-                            <p class="company-name">Data Wizards LLC</p>
-                            <p class="internship-type">Part-Time | On-Site</p>
-                            <p class="card-text">Work with big data, machine learning models, and data visualization.</p>
-                            <a [routerLink]="'/quizFront'" class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Internship Offer 3 -->
-                <div class="col">
-                    <div class="card">
-                        <img src="assets/frontassets/img/cyber.png" class="card-img-top" alt="Cybersecurity Internship">
-                        <div class="card-body">
-                            <h5 class="card-title">Cybersecurity Analyst</h5>
-                            <p class="company-name">SecureNet Solutions</p>
-                            <p class="internship-type">Full-Time | Hybrid</p>
-                            <p class="card-text">Learn to identify vulnerabilities and protect systems from cyber threats.</p>
-                            <a [routerLink]="'/quizFront'" class="btn btn-primary">Apply Now</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Internship Offers Container -->
+      <!-- Internship Offers Container -->
+<div class="container internship-offers-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let specialite of specialites; let i = index">
+        <div class="card">
+          <img [src]="getImagePath(i)" class="card-img-top" [alt]="specialite + ' Internship'">
+          <div class="card-body">
+            <h5 class="card-title">{{ specialite }}</h5>
+            <p class="company-name">{{ getCompanyName(i) }}</p>
+            <p class="internship-type">{{ getInternshipType(i) }}</p>
+            <p class="card-text">{{ getDescription(i) }}</p>
+            <a [routerLink]="['/quizFront', specialite]" class="btn btn-primary">Apply Now</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     </section><!-- End Internship Offers Section -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

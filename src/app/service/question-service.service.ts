@@ -20,7 +20,10 @@ export class QuestionServiceService {
     return this.http.get(`${this.baseUrl}/`);
   }
   
-
+  readQuestion(id: number): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/read/${id}`, { responseType: 'blob' });
+  }
+  
   // Obtenir une question par son ID
   getQuestionById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/get/${id}`);
