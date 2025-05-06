@@ -1,0 +1,161 @@
+<!-- Animation cœur -->
+<app-heart-animation *ngIf="showHeart" (animationDone)="onAnimationFinished()"></app-heart-animation>
+
+<!-- Contenu normal -->
+<div *ngIf="!showHeart">
+
+  <app-header></app-header>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4 text-danger fw-bold">
+    🎯 Congratulations! These are your matched offers
+  </h2>
+
+  <!-- Alerte si aucune offre -->
+  <div *ngIf="matchedOffers.length === 0" class="alert alert-warning text-center">
+    😕 No matched offers found for this application.
+  </div>
+
+  <!-- Cartes d'offres -->
+  <div class="row">
+    <div *ngFor="let offer of matchedOffers" class="col-md-4 mb-4">
+      <div class="card shadow-sm offer-card">
+        <img [src]="offer.imageUrls[0]" class="card-img-top offer-img" alt="Offer Image" />
+        <div class="card-body">
+          <span class="badge offer-status bg-success">MATCHED</span>
+          <h5 class="card-title mt-2 text-danger fw-bold">{{ offer.title }}</h5>
+          <p class="card-text text-muted">{{ offer.companyName }}</p>
+          <p><i class="bi bi-geo-alt"></i> {{ offer.location }}</p>
+
+          <!-- Score -->
+          <div class="text-center mt-4 mb-2">
+            <div class="circle-chart">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path class="circle-bg"
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="circle"
+                      [attr.stroke-dasharray]="(offer.matchScore * 100) + ', 100'"
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <text x="18" y="20.35" class="percentage">
+                  {{ (offer.matchScore * 100) | number:'1.0-0' }}%
+                </text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Météo -->
+          <div *ngIf="offer.weather" class="d-flex align-items-center mt-2">
+            <img [src]="'http://openweathermap.org/img/wn/' + offer.weather.weather[0].icon + '@2x.png'"
+                 alt="Weather Icon" class="me-2" style="width: 40px; height: 40px;" />
+            <div>
+              <div><strong>{{ offer.weather.main.temp }}°C</strong> in {{ offer.weather.name }}</div>
+              <div class="text-muted">{{ offer.weather.weather[0].description }}</div>
+            </div>
+          </div>
+
+          <button class="btn btn-danger w-100 mt-2"
+                  style="background-color: #F28B82;"
+                  (click)="selectedOffer = offer">
+            More Info
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal More Info -->
+<div *ngIf="selectedOffer && !showApplicationForm" class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ selectedOffer.title }}</h5>
+        <button type="button" class="btn btn-danger btn-close" (click)="closeDetails()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Company:</strong> {{ selectedOffer.companyName }}</p>
+        <p>{{ selectedOffer.jobDescription }}</p>
+        <p><strong>Location:</strong> {{ selectedOffer.location }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="openApplicationForm(selectedOffer)">Apply</button>
+        <button class="btn btn-danger" (click)="closeDetails()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Popup déjà postulé -->
+<div *ngIf="hasAlreadyApplied" class="overlay">
+  <div class="popup">
+    <div class="popup-header">
+      <h5>⚠️ Already Applied!</h5>
+    </div>
+    <div class="popup-body">
+      <p>You have already applied for this internship.</p>
+    </div>
+    <div class="popup-footer">
+      <button class="btn btn-danger" (click)="closeAlreadyAppliedPopup()">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Formulaire de candidature -->
+<div *ngIf="showApplicationForm && !hasAlreadyApplied" class="modal fade show d-block application-modal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Apply for {{ selectedOffer?.title }}</h5>
+        <button type="button" class="btn btn-danger btn-close" (click)="closeApplicationForm()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+          <div class="mb-3" *ngFor="let field of [
+            {label:'📛 Full Name', type:'text', name:'fullName'},
+            {label:'📧 Email', type:'email', name:'email'},
+            {label:'📞 Phone', type:'text', name:'phone'},
+            {label:'📍 City', type:'text', name:'city'},
+            {label:'🔗 LinkedIn Profile', type:'url', name:'linkedinProfile'},
+            {label:'🌐 Portfolio / GitHub', type:'url', name:'portfolio'},
+            {label:'🧠 Skills', type:'text', name:'skills'}
+          ]">
+            <label class="form-label">{{ field.label }}</label>
+            <input [type]="field.type" class="form-control" [formControlName]="field.name" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">🎯 Career Objective</label>
+            <textarea class="form-control" formControlName="careerObjective" rows="2" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">💻 Technology Profile</label>
+            <textarea class="form-control" formControlName="technologyProfile" rows="2" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">💼 Experiences</label>
+            <textarea class="form-control" formControlName="experiences" rows="2"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">📷 Upload Photo</label>
+            <input type="file" (change)="onImageSelected($event)" accept="image/*" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-danger w-100 mt-3" [disabled]="applicationForm.invalid">
+            Submit Application
+          </button>
+        </form>
+
+        <div *ngIf="applicationSubmitted" class="mt-4 text-center">
+          <div class="alert alert-success fw-bold" role="alert">
+            🎉 Your application has been submitted successfully!
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
