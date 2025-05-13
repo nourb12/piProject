@@ -10,8 +10,7 @@ Une plateforme intelligente de gestion des stages, facilitant la communication e
 - [Sprints réalisés](#sprints-réalisés)
 - [Technologies utilisées](#technologies-utilisées)
 - [Lancement du projet](#lancement-du-projet)
-- [Équipe](#équipe)
-- [Licence](#licence)
+
 
 ---
 
@@ -69,13 +68,15 @@ Chaque microservice est indépendant, ce qui favorise la scalabilité et la main
 - Évaluation des candidats
 - Gestion des tâches des stagiaires
 
-### ✅ Sprint 3 : Intégration et finalisation
+### ✅ Sprint 3 : Intelligence Artificielle (IA)
 
-- Intégration via **Eureka** et **API Gateway**
-- Sécurisation de l’ensemble des microservices
-- Ajout de notifications en temps réel
-- Intégration des appels vidéo
-- Finalisation de la logique métier
+- ⚙️ **Prédiction** : Utilisation du modèle XGBoost pour prédire si une candidature sera acceptée ou non
+- 🧠 **Recommandation** : Système de recommandation d’offres basé sur la similarité (TF-IDF + Cosine Similarity)
+- 🔬 **Clustering** : Regroupement des profils candidats via K-Means
+- 🌐 **Déploiement** des modèles via Flask (REST API)
+- ✅ **Test via Postman** & intégration avec la plateforme (frontend/backend)
+
+> 💡 **Remarque** : L’intégration technique via API Gateway & Eureka a été complétée dans les sprints 1 et 2. Le sprint 3 était exclusivement dédié à l’ajout de modules intelligents basés sur le Machine Learning.
 
 ## 🛠️ Technologies utilisées
 
