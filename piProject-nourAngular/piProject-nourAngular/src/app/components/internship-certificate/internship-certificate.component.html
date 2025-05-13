@@ -1,0 +1,49 @@
+
+    <h2 class="text-center mb-4">Generate End of Internship Certificate</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow p-4">
+          <form (ngSubmit)="generateCertificate()">
+            <!-- Intern Name Field -->
+            <div class="form-group mb-3">
+              <label for="internName">Intern Name:</label>
+              <input type="text" id="internName" [(ngModel)]="internName" name="internName" class="form-control" required />
+            </div>
+            
+            <!-- Supervisor Name Field -->
+            <div class="form-group mb-3">
+              <label for="supervisorName">Supervisor Name:</label>
+              <input type="text" id="supervisorName" [(ngModel)]="supervisorName" name="supervisorName" class="form-control" required />
+            </div>
+  
+            <!-- Company Name Field -->
+            <div class="form-group mb-3">
+              <label for="companyName">Company Name:</label>
+              <input type="text" id="companyName" [(ngModel)]="companyName" name="companyName" class="form-control" required />
+            </div>
+  
+            <!-- Start Date Field -->
+            <div class="form-group mb-3">
+              <label for="startDate">Start Date:</label>
+              <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" class="form-control" required />
+            </div>
+  
+            <!-- End Date Field -->
+            <div class="form-group mb-3">
+              <label for="endDate">End Date:</label>
+              <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" class="form-control" required />
+            </div>
+  
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-between mt-4">
+              <button routerLink="/list-project" class="btn btn-secondary">Cancel</button>
+              <button type="submit" class="btn btn-primary">Generate Certificate</button>
+            </div>
+            
+          </form>
+          
+        </div>
+      </div>
+    </div>
+

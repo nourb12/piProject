@@ -1,0 +1,125 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+#calendar-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#cal-buttons {
+  margin-bottom: 20px;
+}
+
+#cal-date-field {
+  margin-bottom: 20px;
+}
+
+#cal-date-nav-buttons .btn,
+#cal-view-nav-buttons .btn {
+  margin: 0 5px;
+}
+
+/* Custom Button Colors */
+.btn-custom-previous {
+  background-color: #007bff; /* Blue */
+  color: #fff;
+  border: none;
+}
+
+.btn-custom-today {
+  background-color: #28a745; /* Green */
+  color: #fff;
+  border: none;
+}
+
+.btn-custom-next {
+  background-color: #dc3545; /* Red */
+  color: #fff;
+  border: none;
+}
+
+/* Calendar Styling */
+.mwl-calendar-month-view {
+  table {
+    width: 100%;
+    thead {
+      tr {
+        th {
+          text-align: center;
+          padding: 10px;
+          background-color: #f0f0f0;
+          border-radius: 50%;
+          font-size: 1rem;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          text-align: center;
+          padding: 15px;
+          border-radius: 50%;
+          font-size: 1rem;
+          transition: background-color 0.3s ease;
+          &:hover {
+            background-color: #e2e6ea;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logout-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #dc3545; /* Red */
+  color: white;
+  border: none;
+}
+.event-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.event-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.event-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.cal-event {
+  display: flex;
+  align-items: center;
+}
+
+.completed-event {
+  ::after {
+    content: "✓"; /* Unicode character for checkmark */
+    color: green;
+  }
+}
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+}
+
+
+
+
+
+
+

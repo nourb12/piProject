@@ -1,0 +1,60 @@
+.progress-container {
+    width: 100px;
+    text-align: center;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+  
+  .progress {
+    height: 100%;
+    background: #4caf50;
+    transition: width 0.5s ease-in-out;
+  }
+
+.btn {
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  border-radius: 6px;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.btn-outline-info:hover {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+  

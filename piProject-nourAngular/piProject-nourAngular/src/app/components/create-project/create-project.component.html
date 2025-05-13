@@ -1,0 +1,125 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Add Project</h4>
+      </div>
+    </div>
+
+    <h2 class="text-center mb-4">Create a project</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow p-4">
+          <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="title" class="form-label">Titre</label>
+              <input
+                id="title"
+                class="form-control"
+                formControlName="title"
+                required
+                [ngClass]="{'is-invalid': projectForm.get('title')?.invalid && projectForm.get('title')?.touched}"
+              />
+              <div *ngIf="projectForm.get('title')?.invalid && projectForm.get('title')?.touched" class="invalid-feedback">
+                Title is required, must be at least 3 characters long, and contain only letters and spaces.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                class="form-control"
+                formControlName="description"
+                required
+                [ngClass]="{'is-invalid': projectForm.get('description')?.invalid && projectForm.get('description')?.touched}"
+              ></textarea>
+              <div *ngIf="projectForm.get('description')?.invalid && projectForm.get('description')?.touched" class="invalid-feedback">
+                Description is required and must contain only letters and spaces.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="startDate" class="form-label">Date de début</label>
+              <input
+                type="date"
+                id="startDate"
+                class="form-control"
+                formControlName="startDate"
+                required
+                [ngClass]="{'is-invalid': projectForm.get('startDate')?.invalid && projectForm.get('startDate')?.touched}"
+              />
+              <div *ngIf="projectForm.get('startDate')?.invalid && projectForm.get('startDate')?.touched" class="invalid-feedback">
+                Start date is required.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="endDate" class="form-label">Date de fin</label>
+              <input
+                type="date"
+                id="endDate"
+                class="form-control"
+                formControlName="endDate"
+                required
+                [ngClass]="{'is-invalid': projectForm.get('endDate')?.invalid && projectForm.get('endDate')?.touched}"
+              />
+              <div *ngIf="projectForm.get('endDate')?.hasError('endDateInvalid') && projectForm.get('endDate')?.touched" class="invalid-feedback">
+                End date must be greater than or equal to the start date.
+              </div>
+              <div *ngIf="projectForm.get('endDate')?.invalid && !projectForm.get('endDate')?.hasError('endDateInvalid')" class="invalid-feedback">
+                End date is required.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="status" class="form-label">Statut</label>
+              <select
+                id="status"
+                class="form-select"
+                formControlName="status"
+                required
+                [ngClass]="{'is-invalid': projectForm.get('status')?.invalid && projectForm.get('status')?.touched}"
+              >
+                <option value="PLANNED">Planned</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="COMPLETED">Completed</option>
+              </select>
+              <div *ngIf="projectForm.get('status')?.invalid && projectForm.get('status')?.touched" class="invalid-feedback">
+                Status is required.
+              </div>
+            </div>
+
+            <!-- Liste déroulante pour sélectionner un utilisateur -->
+            <div class="mb-3">
+              <label for="userId" class="form-label">Assign User</label>
+              <select
+                id="userId"
+                class="form-select"
+                formControlName="userId"
+                required
+                [ngClass]="{'is-invalid': projectForm.get('userId')?.invalid && projectForm.get('userId')?.touched}"
+              >
+                <option value="" disabled selected>-- Select a user --</option>
+                <option *ngFor="let user of users" [value]="user.id">{{ user.email}}</option>
+              </select>
+              <div *ngIf="projectForm.get('userId')?.invalid && projectForm.get('userId')?.touched" class="invalid-feedback">
+                Please select a user.
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary" [disabled]="projectForm.invalid">Add project</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<app-footerback></app-footerback>

@@ -1,0 +1,49 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">List of Answers</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="white-box">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Answer</th>
+                <th>Correct</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let answer of answers">
+                <td>{{ answer.id }}</td>
+                <td>{{ answer.response }}</td>
+                <td>
+                  <span *ngIf="answer.isCorrect" class="text-success">✅ Yes</span>
+                  <span *ngIf="!answer.isCorrect" class="text-danger">❌ No</span>
+                </td>
+                <td>
+                  <!-- Edit Button -->
+                  <a [routerLink]="['/update-answer', answer.id]" class="btn btn-primary btn-sm">✏ Edit</a>
+
+                  <!-- Delete Button -->
+                  <button class="btn btn-danger btn-sm" (click)="deleteAnswer(answer.id)">🗑 Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="text-right mt-3">
+            <a [routerLink]="['/list-quiz']" class="btn btn-secondary">Back</a>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

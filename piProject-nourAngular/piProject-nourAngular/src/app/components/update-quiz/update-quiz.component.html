@@ -1,0 +1,74 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Edit Quiz</h4>
+      </div>
+    </div>
+
+    <div class="white-box">
+      <h2 class="text-center">Edit a Quiz</h2>
+
+      <form [formGroup]="quizForm" (ngSubmit)="updateQuiz()">
+        
+        <!-- Title Field -->
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input id="title" type="text" formControlName="title" class="form-control" placeholder="Enter quiz title">
+          <div *ngIf="quizForm.get('title')?.invalid && quizForm.get('title')?.touched" class="text-danger">
+            The title is required and must be at least 3 characters long.
+          </div>
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" class="form-control" placeholder="Enter a description"></textarea>
+          <div *ngIf="quizForm.get('description')?.invalid && quizForm.get('description')?.touched" class="text-danger">
+            The description is required and must be at least 5 characters long.
+          </div>
+        </div>
+
+        <!-- Specialty Field -->
+        <div class="form-group">
+          <label for="specialite">Specialty</label>
+          <input id="specialite" type="text" formControlName="specialite" class="form-control" placeholder="Enter specialty">
+          <div *ngIf="quizForm.get('specialite')?.invalid && quizForm.get('specialite')?.touched" class="text-danger">
+            The specialty is required and must be at least 3 characters long.
+          </div>
+        </div>
+
+        <!-- Date Field -->
+        <div class="form-group">
+          <label for="dateQuiz">Date</label>
+          <input id="dateQuiz" type="date" formControlName="dateQuiz" class="form-control">
+          <div *ngIf="quizForm.get('dateQuiz')?.invalid && quizForm.get('dateQuiz')?.touched" class="text-danger">
+            The date is required.
+          </div>
+        </div>
+
+        <!-- Level Selection -->
+        <div class="form-group">
+          <label for="level">Level</label>
+          <select id="level" class="form-control" formControlName="level">
+            <option value="" disabled>Select a level</option>
+            <option *ngFor="let lvl of levels" [value]="lvl">{{ lvl }}</option>
+          </select>
+          <div *ngIf="quizForm.get('level')?.invalid && quizForm.get('level')?.touched" class="text-danger">
+            Please select a level.
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" [disabled]="quizForm.invalid">Update</button>
+          <a routerLink="/list-quiz" class="btn btn-secondary">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

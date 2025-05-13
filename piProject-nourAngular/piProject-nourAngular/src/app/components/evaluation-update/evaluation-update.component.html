@@ -1,0 +1,67 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <h2>Update Evaluation</h2>
+        <form (ngSubmit)="updateEvaluation()">
+          <div class="form-group">
+            <label for="noteGlobale">Overall Rating:</label>
+            <div class="rating">
+              <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+                        (click)="setRating('noteGlobale', star)">
+                {{ getStarIcon('noteGlobale', star) }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qualiteEncadrement">Supervision Quality:</label>
+            <div class="rating">
+              <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+                        (click)="setRating('qualiteEncadrement', star)">
+                {{ getStarIcon('qualiteEncadrement', star) }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ambianceTravail">Work Environment:</label>
+            <div class="rating">
+              <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+                        (click)="setRating('ambianceTravail', star)">
+                {{ getStarIcon('ambianceTravail', star) }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="chargeTravail">Workload:</label>
+            <select id="chargeTravail" [(ngModel)]="evaluation.chargeTravail" name="chargeTravail" required>
+              <option value="" disabled>Select a workload</option>
+              <option value="good" [selected]="evaluation.chargeTravail === 'good'">Good</option>
+              <option value="medium" [selected]="evaluation.chargeTravail === 'medium'">Medium</option>
+              <option value="bad" [selected]="evaluation.chargeTravail === 'bad'">Bad</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="commentaire">Comment:</label>
+            <textarea id="commentaire" [(ngModel)]="evaluation.commentaire" name="commentaire" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="detail">Details:</label>
+            <textarea id="detail" [(ngModel)]="evaluation.detail" name="detail" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!evaluation.commentaire || !evaluation.detail || !evaluation.chargeTravail">
+            Update Evaluation
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Add Complaint</h4>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <form (ngSubmit)="addComplaint()" #complaintForm="ngForm">
+
+        <!-- SUBJECT -->
+        <div class="form-group">
+          <label for="subject">Subject:</label>
+          <input
+            type="text"
+            id="subject"
+            class="form-control"
+            [(ngModel)]="complaint.subject"
+            name="subject"
+            required
+            minlength="5"
+            maxlength="100"
+            #subjectRef="ngModel"
+          />
+          <div class="text-danger" *ngIf="subjectRef.invalid && (subjectRef.dirty || subjectRef.touched)">
+            <small *ngIf="subjectRef.errors?.['required']">⚠ Subject is required.</small>
+            <small *ngIf="subjectRef.errors?.['minlength']">⚠ At least 5 characters.</small>
+            <small *ngIf="subjectRef.errors?.['maxlength']">⚠ Max 100 characters.</small>
+          </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea
+            id="description"
+            class="form-control"
+            [(ngModel)]="complaint.description"
+            name="description"
+            required
+            minlength="10"
+            maxlength="500"
+            (input)="checkProfanity()"
+            #descriptionRef="ngModel"
+          ></textarea>
+          <div class="text-danger" *ngIf="descriptionRef.invalid && (descriptionRef.dirty || descriptionRef.touched)">
+            <small *ngIf="descriptionRef.errors?.['required']">⚠ Description is required.</small>
+            <small *ngIf="descriptionRef.errors?.['minlength']">⚠ At least 10 characters.</small>
+            <small *ngIf="descriptionRef.errors?.['maxlength']">⚠ Max 500 characters.</small>
+          </div>
+          <div *ngIf="containsProfanity" style="color: red; margin-top: 5px;">
+            ⚠️ Inappropriate language detected. Please rephrase.
+          </div>
+        </div>
+
+        <!-- DATE -->
+        <div class="form-group">
+          <label for="submissionDate">Submission Date:</label>
+          <input
+            type="date"
+            id="submissionDate"
+            class="form-control"
+            [(ngModel)]="complaint.submissionDate"
+            name="submissionDate"
+            required
+            #dateRef="ngModel"
+          />
+          <div class="text-danger" *ngIf="dateRef.invalid && (dateRef.dirty || dateRef.touched)">
+            <small *ngIf="dateRef.errors?.['required']">⚠ Submission date is required.</small>
+          </div>
+        </div>
+
+        <!-- STATUS (disabled) -->
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select
+            id="status"
+            class="form-control"
+            [(ngModel)]="complaint.status"
+            name="status"
+            required
+            disabled
+          >
+            <option [value]="'In Progress'">In Progress</option>
+          </select>
+        </div>
+
+        <!-- BUTTON -->
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="complaintForm.invalid || containsProfanity"
+        >
+          Add Complaint
+        </button>
+
+      
+
+      </form>
+    </div>
+  </div>
+</div>

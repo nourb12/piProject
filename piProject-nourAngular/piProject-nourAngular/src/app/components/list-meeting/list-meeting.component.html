@@ -1,0 +1,76 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title"></div>
+
+    <div class="content-wrapper">
+      <div class="filter-section">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" [(ngModel)]="selectedCategory" (change)="filterByCategory(selectedCategory)">
+          <option value="">All</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+
+      <button class="btn btn-light" (click)="sortMeetingsByStartDate()">
+        Trier par date {{ sortDirectionAsc ? 'croissante' : 'décroissante' }}
+      </button>
+
+      <div class="meeting-container">
+        <h2 class="meeting-title">📅 Meeting List</h2>
+
+        <div class="meeting-grid">
+          <div class="meeting-card" *ngFor="let meeting of meetings">
+            <div class="meeting-card-body">
+              <h5 class="meeting-card-title">{{ meeting.title }}</h5>
+              <p class="meeting-card-text">
+                <span class="meeting-location"><i class="icon-location"></i> {{ meeting.location }}</span> <br>
+                <i class="icon-calendar"></i> <strong>Start:</strong> {{ meeting.startDateTime | date:'short' }} <br>
+                <i class="icon-check"></i> <strong>End:</strong> {{ meeting.endDateTime | date:'short' }} <br>
+                <span class="meeting-badge success">{{ meeting.category }}</span>
+                <span class="meeting-badge info">{{ meeting.type }}</span>
+              </p>
+              <div class="meeting-buttons">
+                <button type="button" class="btn btn-primary" (click)="viewMeeting(meeting)">
+                  👁 View
+                </button>
+                <button class="btn btn-edit" (click)="editMeeting(meeting)">✏️ Edit</button>
+                <button class="btn btn-delete" (click)="deleteMeeting(meeting.id)">🗑 Delete</button>
+                <button class="btn btn-info" (click)="startVideoCall(meeting)">
+                  <i class="fa fa-video-camera"></i> Call
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" [ngClass]="{'show': showModal}" tabindex="-1" role="dialog" *ngIf="showModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Meeting Details</h5>
+              <button type="button" class="close" (click)="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p><strong>Title:</strong> {{ selectedMeeting?.title }}</p>
+              <p><strong>Location:</strong> {{ selectedMeeting?.location }}</p>
+              <p><strong>Start:</strong> {{ selectedMeeting?.startDateTime | date:'short' }}</p>
+              <p><strong>End:</strong> {{ selectedMeeting?.endDateTime | date:'short' }}</p>
+              <p><strong>Category:</strong> {{ selectedMeeting?.category }}</p>
+              <p><strong>Type:</strong> {{ selectedMeeting?.type }}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footerback></app-footerback>

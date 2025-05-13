@@ -1,0 +1,41 @@
+.heart-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+  }
+  .heart-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    animation: fadeInOut 4s ease-in-out forwards;
+    z-index: 10000;
+    text-shadow: 0 0 10px #ff69b4;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    30% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    70% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -40%);
+    }
+  }
+  

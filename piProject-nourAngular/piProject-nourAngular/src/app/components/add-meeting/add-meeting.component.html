@@ -1,0 +1,136 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+    </div>
+
+    <div class="content-wrapper">
+      <div class="form-container">
+        <h2 class="text-center">{{ isEditMode ? 'Edit Meeting' : 'Add Meeting' }}</h2>
+
+        <form [formGroup]="form" (ngSubmit)="saveMeeting()">
+          <div class="form-group">
+            <div>
+              <label for="title">Title <span class="required">*</span></label>
+              <input id="title" type="text" formControlName="title"
+                     [ngClass]="{'is-invalid': titleControl.invalid && titleControl.touched}" required />
+              <div *ngIf="titleControl.invalid && titleControl.touched">
+                <div *ngIf="titleControl.errors?.['required']" class="error-message">Title is required.</div>
+                <div *ngIf="titleControl.errors?.['minlength']" class="error-message">Title must be at least {{ titleControl.errors?.['minlength'].requiredLength }} characters long.</div>
+                <div *ngIf="titleControl.errors?.['maxlength']" class="error-message">Title cannot exceed {{ titleControl.errors?.['maxlength'].requiredLength }} characters.</div>
+              </div>
+            </div>
+
+            <div>
+              <label for="location">Location</label>
+              <input id="location" type="text" formControlName="location"
+                     [ngClass]="{'is-invalid': locationControl.invalid && locationControl.touched}" />
+              <div *ngIf="locationControl.invalid && locationControl.touched">
+                <div *ngIf="locationControl.errors?.['maxlength']" class="error-message">Location cannot exceed {{ locationControl.errors?.['maxlength'].requiredLength }} characters.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div>
+              <label for="startDateTime">Start Date & Time <span class="required">*</span></label>
+              <input id="startDateTime" type="datetime-local" formControlName="startDateTime"
+                     [ngClass]="{'is-invalid': startDateTimeControl.invalid && startDateTimeControl.touched || (form.touched && isInvalidDateOrder())}"
+                     required />
+              <div *ngIf="startDateTimeControl.invalid && startDateTimeControl.touched">
+                <div *ngIf="startDateTimeControl.errors?.['required']" class="error-message">Start date & time is required.</div>
+              </div>
+              <div *ngIf="form.touched && isInvalidDateOrder()" class="error-message">Start date & time must be before end date & time.</div>
+            </div>
+
+            <div>
+              <label for="endDateTime">End Date & Time <span class="required">*</span></label>
+              <input id="endDateTime" type="datetime-local" formControlName="endDateTime"
+                     [ngClass]="{'is-invalid': endDateTimeControl.invalid && endDateTimeControl.touched || (form.touched && isInvalidDateOrder())}"
+                     required />
+              <div *ngIf="endDateTimeControl.invalid && endDateTimeControl.touched">
+                <div *ngIf="endDateTimeControl.errors?.['required']" class="error-message">End date & time is required.</div>
+              </div>
+              <div *ngIf="form.touched && isInvalidDateOrder()" class="error-message">End date & time must be after start date & time.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div>
+              <label for="category">Category <span class="required">*</span></label>
+              <select id="category" formControlName="category"
+                      [ngClass]="{'is-invalid': categoryControl.invalid && categoryControl.touched}" required>
+                <option value="" disabled>Select Category</option>
+                <option value="FOLLOW_UP">FOLLOW_UP</option>
+                <option value="VALIDATION">VALIDATION</option>
+              </select>
+              <div *ngIf="categoryControl.invalid && categoryControl.touched">
+                <div *ngIf="categoryControl.errors?.['required']" class="error-message">Category is required.</div>
+              </div>
+            </div>
+
+            <div>
+              <label for="type">Type <span class="required">*</span></label>
+              <select id="type" formControlName="type"
+                      [ngClass]="{'is-invalid': typeControl.invalid && typeControl.touched}" required>
+                <option value="" disabled>Select Type</option>
+                <option value="ONLINE">ONLINE</option>
+                <option value="IN_PERSON">IN_PERSON</option>
+              </select>
+              <div *ngIf="typeControl.invalid && typeControl.touched">
+                <div *ngIf="typeControl.errors?.['required']" class="error-message">Type is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-group">
+              <label for="supervisorId">Select Supervisor <span class="required">*</span></label>
+              <select id="supervisorId" formControlName="supervisorId"
+                      [ngClass]="{'is-invalid': supervisorIdControl.invalid && supervisorIdControl.touched}" required>
+                <option value="" disabled>Select Supervisor</option>
+                <option *ngFor="let supervisor of supervisors" [value]="supervisor.userId">
+                  {{ supervisor.username }}
+                </option>
+              </select>
+              <div *ngIf="supervisorIdControl.invalid && supervisorIdControl.touched">
+                <div *ngIf="supervisorIdControl.errors?.['required']" class="error-message">Supervisor is required.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="internIds">Select Interns <span class="required">*</span></label>
+              <select id="internIds" formControlName="internIds" multiple
+                      [ngClass]="{'is-invalid': internIdsControl.invalid && internIdsControl.touched}" required>
+                <option *ngFor="let intern of interns" [value]="intern.userId">
+                  {{ intern.username }}
+                </option>
+              </select>
+              <div *ngIf="internIdsControl.invalid && internIdsControl.touched">
+                <div *ngIf="internIdsControl.errors?.['required']" class="error-message">At least one intern is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description" rows="3" formControlName="description"
+                      [ngClass]="{'is-invalid': descriptionControl.invalid && descriptionControl.touched}"></textarea>
+            <div *ngIf="descriptionControl.invalid && descriptionControl.touched">
+              <div *ngIf="descriptionControl.errors?.['maxlength']" class="error-message">Description cannot exceed {{ descriptionControl.errors?.['maxlength'].requiredLength }} characters.</div>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="button" (click)="cancel()">Cancel</button>
+            <button type="submit" [disabled]="form.invalid || isInvalidDateOrder()">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footerback></app-footerback>

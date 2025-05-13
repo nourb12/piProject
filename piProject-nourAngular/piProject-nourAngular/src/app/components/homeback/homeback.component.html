@@ -1,0 +1,170 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Dashboard</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <a href="#" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a>
+                <ol class="breadcrumb">
+                    <li><a href="#">Dashboard</a></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Total Applications</h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">659</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Active Internship Offers</h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash2"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">23</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Approved Applications</h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash3"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">134</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submission Statistics -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="white-box">
+                    <h3 class="box-title">Number of Submissions</h3>
+                    
+                    <ul class="list-inline text-right">
+                        <li><h5><i class="fa fa-circle m-r-5 text-info"></i> Accepted</h5></li>
+                        <li><h5><i class="fa fa-circle m-r-5 text-danger"></i> Rejected</h5></li>
+                    </ul>
+                    <div id="ct-visits" style="height: 405px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Internship Offers -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title">Recent Internship Offers</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Company</th>
+                                    <th>Offer Title</th>
+                                    <th>Status</th>
+                                    <th>Posted Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="txt-oflo">Tunisie Telecom</td>
+                                    <td>Software Development Internship</td>
+                                    <td class="text-success">Open</td>
+                                    <td class="txt-oflo">March 10, 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="txt-oflo">Ooredoo Tunisia</td>
+                                    <td>Data Science Internship</td>
+                                    <td class="text-warning">Pending</td>
+                                    <td class="txt-oflo">March 12, 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="txt-oflo">STB Bank</td>
+                                    <td>Cybersecurity Internship</td>
+                                    <td class="text-danger">Closed</td>
+                                    <td class="txt-oflo">March 8, 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td class="txt-oflo">Telnet</td>
+                                    <td>Embedded Systems Internship</td>
+                                    <td class="text-success">Open</td>
+                                    <td class="txt-oflo">March 15, 2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Comments -->
+        <div class="row">
+            <div class="col-md-12 col-lg-8 col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title">Recent Comments</h3>
+                    <div class="comment-center p-t-10">
+                        <div class="comment-body">
+                            <div class="user-img"> <img src="/assets/backassets/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"></div>
+                            <div class="mail-contnet">
+                                <h5>Mohamed Trabelsi</h5><span class="time">10:20 AM   20 May 2025</span>
+                                <br/><span class="mail-desc">Great experience at Ooredoo Tunisia, learned a lot about cloud computing.</span>
+                            </div>
+                        </div>
+                        <div class="comment-body">
+                            <div class="user-img"> <img src="/assets/backassets/plugins/images/users/sonu.jpg" alt="user" class="img-circle"></div>
+                            <div class="mail-contnet">
+                                <h5>Amine Ben Salah</h5><span class="time">11:00 AM   21 May 2025</span>
+                                <br/><span class="mail-desc">The cybersecurity team at STB Bank was amazing! Very hands-on experience.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="panel">
+                    <div class="sk-chat-widgets">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Live Chat</div>
+                            <div class="panel-body">
+                                <ul class="chatonline">
+                                    <li>
+                                        <a href="#"><img src="/assets/backassets/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Firas Hamouda <small class="text-success">Online</small></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="/assets/backassets/plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Nour Ben Mna <small class="text-warning">Away</small></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+

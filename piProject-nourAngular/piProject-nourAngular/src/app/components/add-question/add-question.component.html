@@ -1,0 +1,48 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Ajouter une Question</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Ajouter une Question</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box">
+                    <div class="quiz-form-container">
+                        <h2>Add Question to a Quiz</h2>
+                        <form [formGroup]="questionForm" (ngSubmit)="addQuestion()">
+                            <div class="form-group">
+                                <label for="content">the Content of Question</label>
+                                <input
+                                    type="text"
+                                    id="content"
+                                    formControlName="content"
+                                    class="form-control"
+                                    placeholder="add the content of the question"
+                                />
+                                <div *ngIf="questionForm.controls['content'].invalid && questionForm.controls['content'].touched" class="text-danger">
+                                    Le contenu de la question est requis et doit comporter au moins 5 caractères.
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary" [disabled]="questionForm.invalid">
+                                    Add a Question
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

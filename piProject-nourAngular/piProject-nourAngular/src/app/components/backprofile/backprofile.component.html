@@ -1,0 +1,61 @@
+<app-headerback></app-headerback>
+
+<div class="main-layout">
+  <app-sideback class="sidebar"></app-sideback>
+
+  <div class="content-wrapper p-4">
+    <div class="container-fluid">
+      <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Profile Information</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="white-box">
+            <!-- 📝 Informations du Profil -->
+            <div class="profile-card">
+              <div class="header">
+                
+                <h2>{{ user?.firstname }} {{ user?.lastname }}</h2>
+                <p class="role">{{ user?.role }}</p>
+              </div>
+
+              <div class="info">
+                <div class="info-item">
+                  <span class="label">📧 Email:</span>
+                  <span class="value">{{ user?.email }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">👤 Role:</span>
+                  <span class="value">{{ user?.role }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">📅 Date Created:</span>
+                  <span class="value">{{ user?.createdAt | date: 'dd/MM/yyyy' }}</span>
+                </div>
+              </div>
+
+              <div class="profile-actions text-right mt-3">
+                <button class="btn btn-primary btn-sm">✏️ Edit Profile</button>
+                <button class="btn btn-secondary btn-sm ml-2">🔒 Change Password</button>
+              </div>
+            </div>
+
+            <!-- 🛑 Message d'erreur -->
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
+
+            <div *ngIf="!user && !errorMessage">
+              <p>Loading profile...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footerback></app-footerback>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tp-foyer" />
+        <module name="eureka-server" />
+        <module name="APIgateway" />
+      </profile>
+      <profile name="Annotation profile for Stage (1)" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.28/lombok-1.18.28.jar" />
+        </processorPath>
+        <module name="Stage (1)" />
+      </profile>
+      <profile name="Annotation profile for Stage" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="Stage (4)" />
+        <module name="Stage (3)" />
+        <module name="Stage (2)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Stage" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="APIgateway" options="-parameters" />
+      <module name="Stage" options="-parameters" />
+      <module name="Stage (1)" options="-parameters" />
+      <module name="Stage (2)" options="-parameters" />
+      <module name="Stage (3)" options="-parameters" />
+      <module name="Stage (4)" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="tp-foyer" options="-parameters" />
+    </option>
+  </component>
+</project>

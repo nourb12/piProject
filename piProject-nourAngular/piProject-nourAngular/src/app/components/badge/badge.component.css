@@ -1,0 +1,125 @@
+.badge-card {
+    width: 300px;
+    background: linear-gradient(135deg, #FFD700, #FFA500); /* Dégradé doré */
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    transition: transform 0.3s ease;
+    margin: 20px;
+  }
+  
+  .badge-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .badge-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+  
+  .badge-body h3 {
+    font-size: 1.3em;
+    margin: 10px 0;
+  }
+  
+  .date, .score, .remark {
+    font-size: 0.9em;
+    margin: 8px 0;
+  }
+  
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  .badge-container {
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .badge-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .badge-body {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .badge-body h3 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .date {
+    color: #777;
+    font-size: 14px;
+  }
+  
+  .score {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+  
+  .result {
+    margin-top: 20px;
+  }
+  
+  .correct {
+    color: green;
+  }
+  
+  .incorrect {
+    color: red;
+  }
+  
+  .remark {
+    margin-top: 15px;
+    font-style: italic;
+    color: #333;
+  }
+  
+  .badge-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .download-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .download-btn:hover {
+    background-color: #45a049;
+  }
+  

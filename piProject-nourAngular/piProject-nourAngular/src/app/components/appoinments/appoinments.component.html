@@ -1,0 +1,82 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+        </div>
+        <!-- Dashboard Stats -->
+            <div class="row mt-5 text-center">
+<div id="calendar-container">
+
+<!-- Top section with Select Users and Add Event button -->
+<div class="d-flex justify-content-between mb-4">
+    <div class="form-group" >
+      <label for="userSelect">Select Users</label>
+      <select id="userSelect" class="form-control" [(ngModel)]="selectedUsers" (change)="onUserChange()">
+        <option value="0">All</option>
+        <option *ngFor="let user of users" [value]="user.userId">{{ user.username }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mb-4">
+    <div class="form-group">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="completed" (change)="onFilterChange()">
+            <mat-radio-button value="all">All</mat-radio-button>
+            <mat-radio-button value="COMPLETED">Completed</mat-radio-button>
+            <mat-radio-button value="SCHEDULED">Scheduled</mat-radio-button>
+        </mat-radio-group>
+        
+    </div>
+  </div>
+
+
+    <!-- Calendar navigation buttons -->
+    <div id="cal-buttons">
+        <div id="cal-date-nav-buttons">
+            <button id="Previous" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view">
+                Previous
+            </button>
+            <button id="Today" mwlCalendarToday [(viewDate)]="viewDate" class="btn btn-primary">
+                Today
+            </button>
+            <button id="Next" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view">
+                Next
+            </button>
+        </div>
+    </div>
+      <!-- Add Event button above Month/Week/Day buttons -->
+  <div class="d-flex justify-content-center mb-2">
+    <button class="btn btn-success mb-2" (click)="openModal()">Add Event</button>
+</div>
+
+    <!-- Display current view date -->
+    <div id="cal-date-field" class="text-center mb-4">
+        <h4 class="font-weight-bold">{{ viewDate | calendarDate:(view + 'ViewTitle') : 'en' }}</h4>
+    </div>
+
+    <!-- Calendar view buttons -->
+    <div class="d-flex justify-content-center mb-4">
+        <div class="btn-group">
+            <button id="month" (click)="setView(Calendarview.Month)" class="btn btn-outline-secondary">Month</button>
+            <button id="Week" (click)="setView(Calendarview.Week)" class="btn btn-outline-secondary">Week</button>
+            <button id="Day" (click)="setView(Calendarview.Day)" class="btn btn-outline-secondary">Day</button>
+        </div>
+    </div>
+
+    <!-- Calendar view based on selected view (Month/Week/Day) -->
+    <span [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="Calendarview.Month" [viewDate]="viewDate" [events]="Interviews" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" locale="fr" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimesChanged($event)" [refresh]="refresh"></mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="Calendarview.Week" [viewDate]="viewDate" [events]="Interviews" locale="fr" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimesChanged($event)" [refresh]="refresh"></mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="Calendarview.Day" [viewDate]="viewDate" [events]="Interviews" locale="fr" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimesChanged($event)" [refresh]="refresh" ></mwl-calendar-day-view>
+  
+    </span>
+    <app-colorlegends></app-colorlegends>
+
+
+</div>
+</div>     
+</div> 
+</div>
+
+<app-footerback></app-footerback>

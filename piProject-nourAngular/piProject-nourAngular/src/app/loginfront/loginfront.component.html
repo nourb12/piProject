@@ -1,0 +1,93 @@
+<div class="navbar-header">
+    <div class="top-left-part">
+        <!-- Logo -->
+        <a routerLink="/front" class="logo">
+            <img class="sitename" src="/assets/frontassets/img/Logo_ESPRIT_Ariana.jpg" alt="Logo">
+        </a>
+    </div>
+</div>
+
+<div class="container" id="container" #container>
+
+    <!-- 🔹 Formulaire d'inscription -->
+    <div class="form-container sign-up-container">
+        <form (submit)="onRegister($event)">
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+
+            <!-- Champs supplémentaires pour firstname, lastname et role -->
+            <input required type="text" placeholder="First Name" [(ngModel)]="user.firstname" name="firstname" />
+            <input required type="text" placeholder="Last Name" [(ngModel)]="user.lastname" name="lastname" />
+            <input required type="email" placeholder="Email" [(ngModel)]="user.email" name="email" />
+            <input required type="password" placeholder="Password" [(ngModel)]="user.password" name="password" />
+
+            <!-- 🔹 Sélection du rôle -->
+            <select [(ngModel)]="user.role" name="role">
+                <option value="" disabled selected>Select Role</option>
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+
+            <!-- 🔐 Secret Key Field (Visible only for specific roles) -->
+            <div *ngIf="user.role === 'ADMIN' || user.role === 'HR' || user.role === 'SUPERVISOR'">
+                <input 
+                    required 
+                    type="password" 
+                    placeholder="Enter Secret Key" 
+                    [(ngModel)]="user.secretKey" 
+                    name="secretKey" 
+                />
+            </div>
+
+            <button type="submit">Sign Up</button>
+
+            <!-- Message d'erreur (si clé incorrecte ou autre) -->
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+        </form>
+    </div>
+
+    <!-- 🔹 Formulaire de connexion -->
+    <div class="form-container sign-in-container">
+        <form (submit)="onLogin($event)">
+            <h1>Sign in</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+
+            <input required type="email" placeholder="Email" [(ngModel)]="loginRequest.email" name="email" />
+            <input required type="password" placeholder="Password" [(ngModel)]="loginRequest.password" name="password" />
+
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+        </form>
+    </div>
+
+    <!-- 🔹 Overlay for toggling between Sign Up and Sign In -->
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="ghost" id="signIn" #signInButton>Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start your journey with us</p>
+                <button class="ghost" id="signUp" #signUpButton>Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+/* Add this to your styles.css or component-specific styles */
+.is-invalid {
+    border-color: #dc3545; /* Red border for invalid input */
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+  }
+  

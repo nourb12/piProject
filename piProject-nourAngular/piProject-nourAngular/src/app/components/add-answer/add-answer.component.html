@@ -1,0 +1,49 @@
+<app-headerback></app-headerback>
+<app-sideback></app-sideback>
+
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Add an Answer</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-8 col-sm-12">
+        <div class="white-box">
+          <h2>Add an Answer</h2>
+
+          <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+          <form (ngSubmit)="addAnswer()">
+            <div class="form-group">
+              <label for="answerText">Answer Text:</label>
+              <input
+                type="text"
+                id="answerText"
+                [(ngModel)]="answerText"
+                name="answerText"
+                class="form-control"
+                placeholder="Enter the answer"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>
+                <input type="checkbox" [(ngModel)]="isCorrect" name="isCorrect" (change)="toggleCorrect($event)"> Correct?
+              </label>
+            </div>
+
+            <div class="form-group mt-3">
+              <button type="submit" class="btn btn-success">Add</button>
+              <a [routerLink]="['/list-quiz']" class="btn btn-secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

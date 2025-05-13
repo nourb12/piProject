@@ -1,0 +1,115 @@
+<head>
+    <!-- Favicons -->
+    <link href="/assets/frontassets/img/favicon.png" rel="icon">
+    <link href="/assets/frontassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href="/assets/frontassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/frontassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/frontassets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/frontassets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/frontassets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+    <!-- Main CSS File -->
+    <link href="/assets/frontassets/css/main.css" rel="stylesheet">
+</head>
+<body>
+  
+<header id="header" class="header d-flex align-items-center sticky-top">
+  
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+    <a routerLink="/" class="logo d-flex align-items-center me-auto">
+
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="/assets/frontassets/img/logo.png" alt=""> -->
+      <img class="sitename" src="/assets/frontassets/img/Logo_ESPRIT_Ariana.jpg">
+      <span>.</span>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a routerLink="javascript:void(0)" class="active" (click)="scrollToSection('hero')">Home</a></li>
+        
+        <li><a routerLink="javascript:void(0)"  (click)="scrollToSection('about')">Opportunities</a></li>
+        <li><a routerLink="javascript:void(0)" (click)="scrollToSection('internship-offers')">Internship Offers</a></li>
+        <li><a routerLink="javascript:void(0)" (click)="scrollToSection('testimonials')">Feedback</a></li>
+        <li><a routerLink="javascript:void(0)" (click)="scrollToSection('contact')">Contact</a></li>
+           <!-- ✅ Ajout du lien vers "My Applications" dans la navbar -->
+           <li><a routerLink="/my-applications">My Applications</a></li>
+           <li class="nav-item">
+            <a class="nav-link" href="#" (click)="goToLastMatchedOffers($event)">Match Offers</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+  <a 
+    class="nav-link dropdown-toggle d-flex align-items-center" 
+    href="#" 
+    id="profileDropdown" 
+    role="button" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false">
+    
+    <span>Profil</span>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+    <li>
+      <a class="dropdown-item">
+        <i class="bi bi-person-circle me-2"></i> {{ user?.firstname }} {{ user?.lastname }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item">
+        <i class="bi bi-envelope me-2"></i> {{ user?.email }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item">
+        <i class="bi bi-user me-2"></i> {{ user?.role }}
+      </a>
+    </li>
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/profile">
+        <i class="bi bi-person-badge me-2"></i> Voir le profil
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+          <li>
+          <button class="btn btn-danger btn-sm ml-3" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </button>
+        </li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+
+  </div>
+</header>
+  <!-- Scroll Top -->
+  <a routerLink="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/frontassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/frontassets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/frontassets/vendor/aos/aos.js"></script>
+  <script src="/assets/frontassets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/frontassets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/frontassets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/frontassets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/assets/frontassets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/assets/frontassets/js/main.js"></script>
+</body>

@@ -1,0 +1,13 @@
+<div class="badge-card">
+    <div class="badge-header">
+      <span class="level">{{ level }}</span>
+    </div>
+    <div class="badge-body">
+      <h3>{{ quizTitle }}</h3>
+      <p class="date">🏅 Obtenu le : {{ dateObtained }}</p>
+      <p class="score">⭐ Score : <strong>{{ score }} / 100</strong></p>
+      <p class="remark">💬 {{ remark }}</p>
+      <button (click)="generatePDF()">Télécharger le certificat</button>
+    </div>
+  </div>
+  
