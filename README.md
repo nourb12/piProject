@@ -1,110 +1,111 @@
 # 📚 Smart Internship Management Platform
 
-Une plateforme intelligente de gestion des stages, facilitant la communication entre étudiants, RH, encadrants, et administrateurs.
+An intelligent internship management platform, facilitating communication between students, HR, supervisors, and administrators.
 
-## 🔗 Table des matières
+## 🔗 Table of Contents
 
-- [Aperçu du projet](#aperçu-du-projet)
+- [Project Overview](#aperçu-du-projet)
 - [Architecture](#architecture)
-- [Fonctionnalités principales](#fonctionnalités-principales)
-- [Sprints réalisés](#sprints-réalisés)
-- [Technologies utilisées](#technologies-utilisées)
-- [Lancement du projet](#lancement-du-projet)
+- [Main Features](#fonctionnalités-principales)
+- [Completed Sprints](#sprints-réalisés)
+- [Technologies Used](#technologies-utilisées)
+- [Project Launch](#lancement-du-projet)
 
 
 ---
 
-## 🧩 Aperçu du projet
+## 🧩 Project Overview
 
-Ce projet a pour objectif de digitaliser le processus de gestion des stages en entreprise. Il permet aux RH de publier des offres, aux étudiants de postuler, aux encadrants de suivre les stagiaires, et à tous les acteurs de planifier efficacement leurs rendez-vous.
+This project aims to digitize the internship management process in companies. It allows HR to publish offers, students to apply, supervisors to monitor interns, and all stakeholders to efficiently plan their meetings.
 
 ## 🏗️ Architecture
 
-Le projet est basé sur une architecture **microservices**, intégrée via :
+The project is based on a microservices architecture, integrated via:
 - **API Gateway** (Spring Cloud Gateway)
-- **Eureka Server** pour la découverte de services
+- **Eureka Server** for service discovery
 
-Chaque microservice est indépendant, ce qui favorise la scalabilité et la maintenance du système.
+Each microservice is independent, which promotes system scalability and maintainability.
 
-### 📐 Modules Développés
+### 📐  Developed Modules
 
-- **Gestion des utilisateurs**
-- **Gestion des offres de stage**
-- **Gestion des candidatures**
+- **User Management**
+- **Internship Offer Management**
+- **Application Management**
 - **Gestion des quiz**
-- **Évaluations**
-- **Tâches**
+- **Quiz Management**
+- **Evaluations**
+- **Projects & Tasks**
 - **Documents**
-- **Rendez-vous / Entretiens**
-- **Réclamations**
+- **Appointments / Interviews**
+- **Complaints**
 
-## 🚀 Fonctionnalités principales
+## 🚀 Main Features
 
-- 🔐 Authentification et autorisation (avec JWT)
-- 📄 Publication et gestion des offres
-- 📝 Postulation et suivi des candidatures
-- 📅 Planification de rendez-vous (RH ↔ Étudiants / Encadrants ↔ Stagiaires)
-- 🧠 Quiz interactifs pour les postulants
-- 📊 Évaluation des stagiaires
-- 📁 Gestion documentaire (CV, conventions, rapports)
-- 📞 Notifications et appels vidéo (via ZegoCloud)
-- 🗣️ Système de réclamations
+- 🔐 Authentication and authorization (with JWT)
+- 📄 Offer publishing and management
+- 📝 Application submission and tracking
+- 📅 Appointment scheduling (HR ↔ Students / Supervisors ↔ Interns)
+- 🧠 Interactive quizzes for candidates
+- 📊 Intern evaluation
+- 📁 Document management (CVs, agreements, reports)
+- 📞 Notifications and video calls (via ZegoCloud)
+- 🗣️ Complaint system
 
-## 📅 Sprints réalisés
+## 📅 Completed Sprints
 
-### ✅ Sprint 1 : Mise en place et fonctionnalités de base
+### ✅ Sprint 1: Initialization and Basic Features
 
-- Initialisation de l’architecture
-- Authentification JWT
-- Gestion des utilisateurs
-- Gestion des offres de stage
-- Gestion des documents
+- Architecture setup
+- JWT Authentication
+- User Management
+- Internship Offer Management
+- Document Management
 
-### ✅ Sprint 2 : Ajout de modules fonctionnels
+### ✅ Sprint 2 : Addition of Functional Modules
 
-- Module de quiz
-- Module de rendez-vous RH / étudiants
-- Gestion des candidatures
-- Évaluation des candidats
-- Gestion des tâches des stagiaires
+- Quiz Module
+- HR / Student Appointment Module
+- Application Management
+- Candidate Evaluation
+- Intern Project and Task Management
 
-### ✅ Sprint 3 : Intelligence Artificielle (IA)
+### ✅ Sprint 3 : Artificial Intelligence (AI)
 
-- ⚙️ **Prédiction** : Utilisation du modèle XGBoost pour prédire si une candidature sera acceptée ou non
-- 🧠 **Recommandation** : Système de recommandation d’offres basé sur la similarité (TF-IDF + Cosine Similarity)
-- 🔬 **Clustering** : Regroupement des profils candidats via K-Means
-- 🌐 **Déploiement** des modèles via Flask (REST API)
-- ✅ **Test via Postman** & intégration avec la plateforme (frontend/backend)
+- ⚙️ **Prediction** : Use of XGBoost model to predict if an application will be accepted or not
+- 🧠 **Recommandation** : Offer recommendation system based on similarity (TF-IDF + Cosine Similarity)
+- 🔬 **Clustering** : Grouping candidate profiles using K-Means
+- 🌐 **Model Deployment** Model Deployment via Flask (REST API)
+- ✅ **Test via Postman** & integration with the platform (frontend/backend)
 
-> 💡 **Remarque** : L’intégration technique via API Gateway & Eureka a été complétée dans les sprints 1 et 2. Le sprint 3 était exclusivement dédié à l’ajout de modules intelligents basés sur le Machine Learning.
+> 💡 **Note** : Technical integration via API Gateway & Eureka was completed in sprints 1 and 2. Sprint 3 was exclusively dedicated to the addition of intelligent modules based on Machine Learning.
 
-## 🛠️ Technologies utilisées
+## 🛠️ Technologies Used
 
 - **Frontend** : Angular
 - **Backend** : Spring Boot, Spring Cloud
 - **API Gateway** : Spring Cloud Gateway
 - **Service Discovery** : Eureka
-- **Base de données** : MySQL
+- **Database** : MySQL
 - **Communication** : REST APIs
 - **Notifications** : WebSocket / Firebase
 - **Appels vidéo** : ZegoCloud API
 
-## ⚙️ Lancement du projet
+## ⚙️ Project Launch
 
 ```bash
-# Démarrer Eureka
+# run Eureka
 cd eureka-server
 ./mvnw spring-boot:run
 
-# Démarrer API Gateway
+# run API Gateway
 cd api-gateway
 ./mvnw spring-boot:run
 
-# Démarrer les microservices (exemple : user-service)
+# run Microservices (example : user-service)
 cd user-service
 ./mvnw spring-boot:run
 
-# Lancer le frontend
+# run Frontend
 cd frontend
 npm install
 ng serve
