@@ -1,4 +1,4 @@
-# 📚 Internship Management Platform
+# 📚 Smart Internship Management Platform
 
 Une plateforme intelligente de gestion des stages, facilitant la communication entre étudiants, RH, encadrants, et administrateurs.
 
